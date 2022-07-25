@@ -1,0 +1,1531 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/22/2019 10:40:06 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WHLDOMTS01"
+  DTS:CreatorName="WHLBASE\BiAdmin-JohanP"
+  DTS:DTSID="{34DA6277-9CE7-414A-BD1A-B26CB15BD5A8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.5626.31"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Adhoc_Accounts"
+  DTS:PackageType="5"
+  DTS:VersionBuild="232"
+  DTS:VersionGUID="{FD70CDCF-FE57-487B-B948-F8C78FF1E362}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1519178E-D462-475A-8E5A-160AEB20AABD}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="Enddate">
+      <DTS:VariableValue
+        DTS:DataType="8">2022-07-02</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{1C22F432-7117-478F-9459-7AB7E3C360C4}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="StartDate">
+      <DTS:VariableValue
+        DTS:DataType="8">2022-07-01</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\VUVUZELA"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{9d423c28-b0d3-414e-82fc-b826632d4b0e}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="VUVUZELA">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\VUVUZELA\PopulateStage"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{55e940a1-d372-4db9-86cb-700a5c8a99d2}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="PopulateStage"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail)"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail)"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Vuvuzela].[Stage_Casino_CasinoDetail]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">CHECK_CONSTRAINTS,ROWS_PER_BATCH = 100000</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Connections[OleDbConnection]"
+                      connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[AccountId]"
+                          cachedDataType="guid"
+                          cachedName="AccountId"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[AccountId]" />
+                        <inputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[EditedDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="EditedDateTime"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedDateTime]" />
+                        <inputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[EditedById]"
+                          cachedDataType="guid"
+                          cachedName="EditedById"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedById]" />
+                        <inputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[Version]"
+                          cachedDataType="i4"
+                          cachedName="Version"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Version]" />
+                        <inputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[IsDeleted]"
+                          cachedDataType="bool"
+                          cachedName="IsDeleted"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[IsDeleted]" />
+                        <inputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[CasinoDetailId]"
+                          cachedDataType="guid"
+                          cachedName="CasinoDetailId"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[CasinoDetailId]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoDetailId]" />
+                        <inputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[CasinoSportTypeId]"
+                          cachedDataType="guid"
+                          cachedName="CasinoSportTypeId"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[CasinoSportTypeId]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoSportTypeId]" />
+                        <inputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[Json]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1000"
+                          cachedName="Json"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[Json]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Json]" />
+                        <inputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[RequestType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="RequestType"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[RequestType]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[RequestType]" />
+                        <inputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[ExternalReference]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="ExternalReference"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[ExternalReference]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[ExternalReference]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                          dataType="guid"
+                          name="AccountId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[CasinoDetailId]"
+                          dataType="guid"
+                          name="CasinoDetailId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[CasinoSportTypeId]"
+                          dataType="guid"
+                          name="CasinoSportTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[Json]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1000"
+                          name="Json" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[RequestType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="RequestType" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[ExternalReference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="500"
+                          name="ExternalReference" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail)"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="(Vuvuzela)(Casino)(CasinoDetail)"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+	
+		 [CasinoDetailId]
+		,[CasinoSportTypeId]
+		,[AccountId]
+		,[Json]
+		,[RequestType]
+		,[ExternalReference]
+		,[EditedById]
+		,[EditedDateTime]
+		,[Version]
+		,[IsDeleted]
+
+FROM  
+		[Vuvuzela].[Casino].[CasinoDetail]
+
+WHERE  (EditedDateTime &gt;= ?) AND (EditedDateTime &lt; ?)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{1C22F432-7117-478F-9459-7AB7E3C360C4};"Parameter1:Input",{1519178E-D462-475A-8E5A-160AEB20AABD};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Connections[OleDbConnection]"
+                      connectionManagerID="{11938FDE-7DA3-415F-A2AD-1C86AD68390D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[172.27.0.79.Vuvuzela.DOSBISUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[AccountId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[AccountId]"
+                          name="AccountId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          name="EditedDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedById]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedById]"
+                          name="EditedById"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Version]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Version]"
+                          name="Version"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          name="IsDeleted"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoDetailId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[CasinoDetailId]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoDetailId]"
+                          name="CasinoDetailId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoSportTypeId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[CasinoSportTypeId]"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoSportTypeId]"
+                          name="CasinoSportTypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Json]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[Json]"
+                          length="1000"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Json]"
+                          name="Json"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[RequestType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[RequestType]"
+                          length="150"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[RequestType]"
+                          name="RequestType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[ExternalReference]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[ExternalReference]"
+                          length="255"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[ExternalReference]"
+                          name="ExternalReference"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                          dataType="guid"
+                          name="AccountId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[CasinoDetailId]"
+                          dataType="guid"
+                          name="CasinoDetailId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[CasinoSportTypeId]"
+                          dataType="guid"
+                          name="CasinoSportTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[Json]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1000"
+                          name="Json" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[RequestType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="RequestType" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[ExternalReference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ExternalReference" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[CasinoDetailId]"
+                          dataType="guid"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[CasinoDetailId]"
+                          name="CasinoDetailId" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[CasinoSportTypeId]"
+                          dataType="guid"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[CasinoSportTypeId]"
+                          name="CasinoSportTypeId" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                          dataType="guid"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                          name="AccountId" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[Json]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1000"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[Json]"
+                          name="Json" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[RequestType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[RequestType]"
+                          name="RequestType" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ExternalReference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ExternalReference]"
+                          name="ExternalReference" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          name="EditedDateTime" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          dataType="guid"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          name="EditedById" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[Version]"
+                          dataType="i4"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[Version]"
+                          name="Version" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          dataType="bool"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          name="IsDeleted" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\VUVUZELA\PopulateStage.Paths[OLE DB Source Output]"
+                  endId="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail).Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\VUVUZELA\SyncData"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{7d974156-05a3-4b3e-ae46-a540f4c48eb6}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SyncData"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[sp_Stage_Vuvuzela_CasinoDetail]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\VUVUZELA\Truncate Staging"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{23e72e79-6b19-413d-bafc-dddb8e875455}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Staging"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE [Vuvuzela].[Stage_Casino_CasinoDetail]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\VUVUZELA.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{1baab28f-f793-463a-a4b6-c8af3520107d}"
+          DTS:From="Package\VUVUZELA\PopulateStage"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\VUVUZELA\SyncData" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\VUVUZELA.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{8f2f8e62-b285-4a0b-8465-74a4048e7af6}"
+          DTS:From="Package\VUVUZELA\Truncate Staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\VUVUZELA\PopulateStage" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\VUVUZELAZA"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{a4051ea7-2876-4b69-8d91-f9836813b453}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="VUVUZELAZA">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\VUVUZELAZA\PopulateStage"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{baa06bc2-8285-455c-a9e5-94a52c2c2b2c}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="PopulateStage"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail)"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail)"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[VuvuZelaZA].[Stage_Casino_CasinoDetail]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">CHECK_CONSTRAINTS,ROWS_PER_BATCH = 100000</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Connections[OleDbConnection]"
+                      connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[AccountId]"
+                          cachedDataType="guid"
+                          cachedName="AccountId"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[AccountId]" />
+                        <inputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[EditedDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="EditedDateTime"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedDateTime]" />
+                        <inputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[EditedById]"
+                          cachedDataType="guid"
+                          cachedName="EditedById"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedById]" />
+                        <inputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[Version]"
+                          cachedDataType="i4"
+                          cachedName="Version"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Version]" />
+                        <inputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[IsDeleted]"
+                          cachedDataType="bool"
+                          cachedName="IsDeleted"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[IsDeleted]" />
+                        <inputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[CasinoDetailId]"
+                          cachedDataType="guid"
+                          cachedName="CasinoDetailId"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[CasinoDetailId]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoDetailId]" />
+                        <inputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[CasinoSportTypeId]"
+                          cachedDataType="guid"
+                          cachedName="CasinoSportTypeId"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[CasinoSportTypeId]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoSportTypeId]" />
+                        <inputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[Json]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="1000"
+                          cachedName="Json"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[Json]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Json]" />
+                        <inputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[RequestType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="150"
+                          cachedName="RequestType"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[RequestType]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[RequestType]" />
+                        <inputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].Columns[ExternalReference]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="255"
+                          cachedName="ExternalReference"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[ExternalReference]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[ExternalReference]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                          dataType="guid"
+                          name="AccountId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[CasinoDetailId]"
+                          dataType="guid"
+                          name="CasinoDetailId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[CasinoSportTypeId]"
+                          dataType="guid"
+                          name="CasinoSportTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[Json]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1000"
+                          name="Json" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[RequestType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="RequestType" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input].ExternalColumns[ExternalReference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="500"
+                          name="ExternalReference" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail)"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="(VuvuzelaZA)(Casino)(CasinoDetail)"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+	
+		 [CasinoDetailId]
+		,[CasinoSportTypeId]
+		,[AccountId]
+		,[Json]
+		,[RequestType]
+		,[ExternalReference]
+		,[EditedById]
+		,[EditedDateTime]
+		,[Version]
+		,[IsDeleted]
+
+FROM  
+		[VuvuzelaZA].[Casino].[CasinoDetail]
+
+WHERE  (EditedDateTime &gt;= ?) AND (EditedDateTime &lt; ?)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping">"Parameter0:Input",{1C22F432-7117-478F-9459-7AB7E3C360C4};"Parameter1:Input",{1519178E-D462-475A-8E5A-160AEB20AABD};</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Connections[OleDbConnection]"
+                      connectionManagerID="{11938FDE-7DA3-415F-A2AD-1C86AD68390D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[172.27.0.79.Vuvuzela.DOSBISUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[AccountId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[AccountId]"
+                          name="AccountId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          name="EditedDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedById]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[EditedById]"
+                          name="EditedById"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Version]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Version]"
+                          name="Version"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          name="IsDeleted"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoDetailId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[CasinoDetailId]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoDetailId]"
+                          name="CasinoDetailId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoSportTypeId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[CasinoSportTypeId]"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[CasinoSportTypeId]"
+                          name="CasinoSportTypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Json]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[Json]"
+                          length="1000"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[Json]"
+                          name="Json"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[RequestType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[RequestType]"
+                          length="150"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[RequestType]"
+                          name="RequestType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[ExternalReference]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[ExternalReference]"
+                          length="255"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].Columns[ExternalReference]"
+                          name="ExternalReference"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                          dataType="guid"
+                          name="AccountId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[CasinoDetailId]"
+                          dataType="guid"
+                          name="CasinoDetailId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[CasinoSportTypeId]"
+                          dataType="guid"
+                          name="CasinoSportTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[Json]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1000"
+                          name="Json" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[RequestType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          name="RequestType" />
+                        <externalMetadataColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output].ExternalColumns[ExternalReference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          name="ExternalReference" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[CasinoDetailId]"
+                          dataType="guid"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[CasinoDetailId]"
+                          name="CasinoDetailId" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[CasinoSportTypeId]"
+                          dataType="guid"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[CasinoSportTypeId]"
+                          name="CasinoSportTypeId" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                          dataType="guid"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                          name="AccountId" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[Json]"
+                          codePage="1252"
+                          dataType="str"
+                          length="1000"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[Json]"
+                          name="Json" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[RequestType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="150"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[RequestType]"
+                          name="RequestType" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ExternalReference]"
+                          codePage="1252"
+                          dataType="str"
+                          length="255"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ExternalReference]"
+                          name="ExternalReference" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          name="EditedDateTime" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          dataType="guid"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          name="EditedById" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[Version]"
+                          dataType="i4"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[Version]"
+                          name="Version" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          dataType="bool"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          name="IsDeleted" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\VUVUZELAZA\PopulateStage.Paths[OLE DB Source Output]"
+                  endId="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail).Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail).Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\VUVUZELAZA\SyncData"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{93e03b2a-0a3e-457d-a80f-23fa95763549}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SyncData"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[sp_Stage_VuvuzelaZA_CasinoDetail]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\VUVUZELAZA\Truncate Staging"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{6af5714a-365d-472c-93c8-de00203771e9}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate Staging"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE [VuvuzelaZA].[Stage_Casino_CasinoDetail]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\VUVUZELAZA.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{124baa92-0888-4362-84ec-7840a95a5da2}"
+          DTS:From="Package\VUVUZELAZA\PopulateStage"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\VUVUZELAZA\SyncData" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\VUVUZELAZA.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{73e842be-f462-4bd7-8c10-69409d591c68}"
+          DTS:From="Package\VUVUZELAZA\Truncate Staging"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\VUVUZELAZA\PopulateStage" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{CDF0628D-0288-4DF7-A9DA-0B1E92D2CD51}"
+      DTS:From="Package\VUVUZELA"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\VUVUZELAZA" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="146,42"
+          Id="Package\VUVUZELA\PopulateStage"
+          TopLeft="11.8333333333334,107.5" />
+        <NodeLayout
+          Size="122.666666666667,42"
+          Id="Package\VUVUZELA\SyncData"
+          TopLeft="23.5,209.5" />
+        <NodeLayout
+          Size="158.666666666667,42"
+          Id="Package\VUVUZELA\Truncate Staging"
+          TopLeft="5.50000000000001,5.5" />
+        <EdgeLayout
+          Id="Package\VUVUZELA.PrecedenceConstraints[Constraint 1]"
+          TopLeft="84.8333333333334,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\VUVUZELA.PrecedenceConstraints[Constraint 2]"
+          TopLeft="84.8333333333333,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="170,306.666666666667"
+          Size="170,349.333333333334"
+          Id="Package\VUVUZELA"
+          TopLeft="5.50000000000006,5.50000000000009" />
+        <NodeLayout
+          Size="146,42"
+          Id="Package\VUVUZELAZA\PopulateStage"
+          TopLeft="11.8333333333334,107.5" />
+        <NodeLayout
+          Size="122.666666666667,42"
+          Id="Package\VUVUZELAZA\SyncData"
+          TopLeft="23.5,209.5" />
+        <NodeLayout
+          Size="158.666666666667,42"
+          Id="Package\VUVUZELAZA\Truncate Staging"
+          TopLeft="5.50000000000001,5.5" />
+        <EdgeLayout
+          Id="Package\VUVUZELAZA.PrecedenceConstraints[Constraint 1]"
+          TopLeft="84.8333333333334,149.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\VUVUZELAZA.PrecedenceConstraints[Constraint 2]"
+          TopLeft="84.8333333333333,47.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="170,306.666666666667"
+          Size="170,349.333333333334"
+          Id="Package\VUVUZELAZA"
+          TopLeft="5.5000000000001,414.833333333333" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="90.5000000000001,354.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\VUVUZELA\PopulateStage">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="425.333333333334,42.6666666666667"
+          Id="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail)"
+          TopLeft="5.50000000000003,108.166666666667" />
+        <NodeLayout
+          Size="234.666666666667,42.6666666666667"
+          Id="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail)"
+          TopLeft="100.833333333333,5.50000000000004" />
+        <EdgeLayout
+          Id="Package\VUVUZELA\PopulateStage.Paths[OLE DB Source Output]"
+          TopLeft="218.166666666667,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\VUVUZELA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Casino_CasinoDetail)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\VUVUZELA\PopulateStage\(Vuvuzela)(Casino)(CasinoDetail)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\VUVUZELAZA\PopulateStage">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="437.333333333334,42.6666666666667"
+          Id="Package\VUVUZELAZA\PopulateStage\(CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_Casino_CasinoDetail)"
+          TopLeft="5.50000000000003,108.166666666667" />
+        <NodeLayout
+          Size="246.666666666667,42.6666666666667"
+          Id="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail)"
+          TopLeft="100.833333333333,5.50000000000004" />
+        <EdgeLayout
+          Id="Package\VUVUZELAZA\PopulateStage.Paths[OLE DB Source Output]"
+          TopLeft="224.166666666667,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\VUVUZELAZA\PopulateStage\(VuvuzelaZA)(Casino)(CasinoDetail)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32228.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{159641D6-6404-4A2A-AE62-294DE0FE8301}") = "Vuvuzela_Sync", "Vuvuzela_Sync.dtproj", "{CDAF9031-4A13-4D88-9985-E9AF1F8B66B9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Development|Default = Development|Default
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{CDAF9031-4A13-4D88-9985-E9AF1F8B66B9}.Development|Default.ActiveCfg = Development
+		{CDAF9031-4A13-4D88-9985-E9AF1F8B66B9}.Development|Default.Build.0 = Development
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DAD1EA3B-3D63-423E-A0A1-3DA3C46DFD90}
+	EndGlobalSection
+EndGlobal

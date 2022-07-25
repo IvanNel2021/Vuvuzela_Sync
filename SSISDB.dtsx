@@ -1,0 +1,1614 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/6/2022 1:04:45 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WHLDOMTS01"
+  DTS:CreatorName="WHLBASE\biadmin-ivan.nel"
+  DTS:DTSID="{4978C3DF-4179-480F-AEFE-6A77FADF3675}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.5626.31"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="5"
+  DTS:VersionGUID="{5B1E2FF3-BA1B-4D41-9BEA-54B6ADC8D2C2}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SSISDB"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{49AED8C9-B991-474F-9E5E-ABDF41FA35FC}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SSISDB"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\SSISDB\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[tbl_WHLSSIS01_SSISDB]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[tbl_WHLSSIS01_SSISDB]) [refTable]
+where [refTable].[execution_id] = ? and [refTable].[process_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="execution_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="folder_name" dataType="DT_WSTR" length="128" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="project_name" dataType="DT_WSTR" length="128" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="package_name" dataType="DT_WSTR" length="260" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="status" dataType="DT_STR" length="18" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="start_time" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="end_time" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="runtime" dataType="DT_STR" length="8" precision="0" scale="0" codePage="1252"/&gt;&lt;referenceColumn name="process_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="stopped_by_sid" dataType="DT_GUID" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="stopped_by_name" dataType="DT_WSTR" length="128" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[execution_id]};#{Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[process_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SSISDB\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SSISDB\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SSISDB\Lookup.Inputs[Lookup Input].Columns[execution_id]"
+                      cachedDataType="i4"
+                      cachedName="execution_id"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[execution_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">execution_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                    <inputColumn
+                      refId="Package\SSISDB\Lookup.Inputs[Lookup Input].Columns[process_id]"
+                      cachedDataType="i4"
+                      cachedName="process_id"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[process_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">process_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SSISDB\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\SSISDB\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SSISDB\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\SSISDB\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SSISDB\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\SSISDB\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSISDB\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSISDB\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="tbl_WHLSSIS01_SSISDB"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[tbl_WHLSSIS01_SSISDB]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Connections[OleDbConnection]"
+                  connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].Columns[execution_id]"
+                      cachedDataType="i4"
+                      cachedName="execution_id"
+                      externalMetadataColumnId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[execution_id]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[execution_id]" />
+                    <inputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].Columns[folder_name]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="folder_name"
+                      externalMetadataColumnId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[folder_name]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[folder_name]" />
+                    <inputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].Columns[project_name]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="project_name"
+                      externalMetadataColumnId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[project_name]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[project_name]" />
+                    <inputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].Columns[package_name]"
+                      cachedDataType="wstr"
+                      cachedLength="260"
+                      cachedName="package_name"
+                      externalMetadataColumnId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[package_name]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[package_name]" />
+                    <inputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].Columns[Status]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="18"
+                      cachedName="Status"
+                      externalMetadataColumnId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[status]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[Status]" />
+                    <inputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].Columns[start_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="start_time"
+                      externalMetadataColumnId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[start_time]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[start_time]" />
+                    <inputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].Columns[end_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="end_time"
+                      externalMetadataColumnId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[end_time]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[end_time]" />
+                    <inputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].Columns[RunTime]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="8"
+                      cachedName="RunTime"
+                      externalMetadataColumnId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[runtime]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[RunTime]" />
+                    <inputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].Columns[process_id]"
+                      cachedDataType="i4"
+                      cachedName="process_id"
+                      externalMetadataColumnId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[process_id]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[process_id]" />
+                    <inputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].Columns[stopped_by_sid]"
+                      cachedDataType="bytes"
+                      cachedLength="85"
+                      cachedName="stopped_by_sid"
+                      externalMetadataColumnId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[stopped_by_sid]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[stopped_by_sid]" />
+                    <inputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].Columns[stopped_by_name]"
+                      cachedDataType="wstr"
+                      cachedLength="128"
+                      cachedName="stopped_by_name"
+                      externalMetadataColumnId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[stopped_by_name]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[stopped_by_name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[execution_id]"
+                      dataType="i4"
+                      name="execution_id" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[folder_name]"
+                      dataType="wstr"
+                      length="128"
+                      name="folder_name" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[project_name]"
+                      dataType="wstr"
+                      length="128"
+                      name="project_name" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[package_name]"
+                      dataType="wstr"
+                      length="260"
+                      name="package_name" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="status" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[start_time]"
+                      dataType="dbTimeStamp"
+                      name="start_time" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[end_time]"
+                      dataType="dbTimeStamp"
+                      name="end_time" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[runtime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="runtime" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[process_id]"
+                      dataType="i4"
+                      name="process_id" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[stopped_by_sid]"
+                      dataType="guid"
+                      name="stopped_by_sid" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input].ExternalColumns[stopped_by_name]"
+                      dataType="wstr"
+                      length="128"
+                      name="stopped_by_name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SSISDB\WHLSSIS01"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="WHLSSIS01"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT
+    E.execution_id
+,   E.folder_name
+,   E.project_name
+,   E.package_name
+,   CASE WHEN E.status = 1 THEN 'Created'
+	     WHEN E.status = 2 THEN 'Running'
+		 WHEN E.status = 3 THEN 'Cancelled'
+		 WHEN E.status = 4 THEN 'Failed'
+		 WHEN E.status = 5 THEN 'Pending'
+		 WHEN E.status = 6 THEN 'Ended Unexpectedly'
+		 WHEN E.status = 7 THEN 'Succeeded'
+		 WHEN E.status = 8 THEN 'Stopping'
+		 WHEN E.status = 9 THEN 'Completed'
+	END AS Status		 
+,   CAST(E.start_time AS DATETIME) AS start_time
+,   CAST(E.end_time AS DATETIME) AS end_time
+,	CONVERT(CHAR(8),DATEADD(s,DATEDIFF(s,E.start_time,E.end_time),'1900-1-1'),8) AS [RunTime]
+,   E.process_id
+,   E.stopped_by_sid
+,   E.stopped_by_name
+
+FROM
+    catalog.executions AS E
+   
+--WHERE Project_name = 'Sync_Vuvuzela_CPTv2'
+WHERE folder_name = 'Finance'
+--AND CAST(start_time as date) &gt;= CAST(GETDATE() as date)
+ORDER BY start_time desc</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SSISDB\WHLSSIS01.Connections[OleDbConnection]"
+                  connectionManagerID="{5F34C85D-E30C-4B29-BC1D-E2C6D7AADFF1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHLSSIS01.SSISDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[execution_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[execution_id]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[execution_id]"
+                      name="execution_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[folder_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[folder_name]"
+                      length="128"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[folder_name]"
+                      name="folder_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[project_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[project_name]"
+                      length="128"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[project_name]"
+                      name="project_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[package_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[package_name]"
+                      length="260"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[package_name]"
+                      name="package_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                      length="18"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[Status]"
+                      name="Status"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[start_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[start_time]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[start_time]"
+                      name="start_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[end_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[end_time]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[end_time]"
+                      name="end_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[RunTime]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[RunTime]"
+                      length="8"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[RunTime]"
+                      name="RunTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[process_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[process_id]"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[process_id]"
+                      name="process_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[stopped_by_sid]"
+                      dataType="bytes"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[stopped_by_sid]"
+                      length="85"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[stopped_by_sid]"
+                      name="stopped_by_sid"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[stopped_by_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[stopped_by_name]"
+                      length="128"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].Columns[stopped_by_name]"
+                      name="stopped_by_name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[execution_id]"
+                      dataType="i8"
+                      name="execution_id" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[folder_name]"
+                      dataType="wstr"
+                      length="128"
+                      name="folder_name" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[project_name]"
+                      dataType="wstr"
+                      length="128"
+                      name="project_name" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[package_name]"
+                      dataType="wstr"
+                      length="260"
+                      name="package_name" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      name="Status" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[start_time]"
+                      dataType="dbTimeStamp"
+                      name="start_time" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[end_time]"
+                      dataType="dbTimeStamp"
+                      name="end_time" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[RunTime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      name="RunTime" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[process_id]"
+                      dataType="i4"
+                      name="process_id" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[stopped_by_sid]"
+                      dataType="bytes"
+                      length="85"
+                      name="stopped_by_sid" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output].ExternalColumns[stopped_by_name]"
+                      dataType="wstr"
+                      length="128"
+                      name="stopped_by_name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[execution_id]"
+                      dataType="i8"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[execution_id]"
+                      name="execution_id" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[folder_name]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[folder_name]"
+                      name="folder_name" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[project_name]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[project_name]"
+                      name="project_name" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[package_name]"
+                      dataType="wstr"
+                      length="260"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[package_name]"
+                      name="package_name" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[Status]"
+                      codePage="1252"
+                      dataType="str"
+                      length="18"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[Status]"
+                      name="Status" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[start_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[start_time]"
+                      name="start_time" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[end_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[end_time]"
+                      name="end_time" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[RunTime]"
+                      codePage="1252"
+                      dataType="str"
+                      length="8"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[RunTime]"
+                      name="RunTime" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[process_id]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[process_id]"
+                      name="process_id" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[stopped_by_sid]"
+                      dataType="bytes"
+                      length="85"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[stopped_by_sid]"
+                      name="stopped_by_sid" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[stopped_by_name]"
+                      dataType="wstr"
+                      length="128"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[stopped_by_name]"
+                      name="stopped_by_name" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\SSISDB.Paths[Lookup No Match Output]"
+              endId="Package\SSISDB\tbl_WHLSSIS01_SSISDB.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\SSISDB\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\SSISDB.Paths[OLE DB Source Output]"
+              endId="Package\SSISDB\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\SSISDB\WHLSSIS01.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SSISDB - Detail"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{1234F5F8-851F-42D2-8768-F592E5743827}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SSISDB - Detail"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\SSISDB - Detail\Lookup"
+              componentClassID="Microsoft.Lookup"
+              contactInfo="Lookup;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;6"
+              description="Joins additional columns to the data flow by looking up values in a table. For example, join to the 'employee id' column the employees table to get 'hire date' and 'employee name'. We recommend this transformation when the lookup table can fit into memory."
+              name="Lookup"
+              usesDispositions="true"
+              version="6">
+              <properties>
+                <property
+                  dataType="System.String"
+                  description="Specifies the SQL statement that generates the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from [dbo].[tbl_WHLSSIS01_SSISDB_Detail]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies a SQL statement that uses parameters to generate the lookup table."
+                  expressionType="Notify"
+                  name="SqlCommandParam"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select * from (select * from [dbo].[tbl_WHLSSIS01_SSISDB_Detail]) [refTable]
+where [refTable].[operation_id] = ?</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the type of connection used to access the reference dataset."
+                  name="ConnectionType"
+                  typeConverter="LookupConnectionType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the cache type of the lookup table."
+                  name="CacheType"
+                  typeConverter="CacheType">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies how the Lookup transformation handles rows without matching entries in the reference data set."
+                  name="NoMatchBehavior"
+                  typeConverter="LookupNoMatchBehavior">1</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the percentage of the cache that is allocated for rows with no matching entries in the reference dataset."
+                  name="NoMatchCachePercentage">0</property>
+                <property
+                  dataType="System.Int32"
+                  description="Maximum Memory Usage for Reference Cache on a 32 bit platform."
+                  name="MaxMemoryUsage">25</property>
+                <property
+                  dataType="System.Int64"
+                  description="Maximum Memory Usage for Reference Cache on a 64 bit platform."
+                  name="MaxMemoryUsage64">25</property>
+                <property
+                  dataType="System.String"
+                  description="Indicates whether to reference metadata in an XML format."
+                  name="ReferenceMetadataXml">&lt;referenceMetadata&gt;&lt;referenceColumns&gt;&lt;referenceColumn name="operation_id" dataType="DT_I4" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="object_name" dataType="DT_WSTR" length="260" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="message_time" dataType="DT_DBTIMESTAMP" length="0" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="message" dataType="DT_WSTR" length="2000" precision="0" scale="0" codePage="0"/&gt;&lt;referenceColumn name="package_path" dataType="DT_WSTR" length="2000" precision="0" scale="0" codePage="0"/&gt;&lt;/referenceColumns&gt;&lt;/referenceMetadata&gt;</property>
+                <property
+                  containsID="true"
+                  dataType="System.String"
+                  description="Specifies the list of lineage identifiers that map to the parameters that the SQL statement in the SQLCommand property uses. Entries in the list are separated by semicolons."
+                  name="ParameterMap">#{Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[operation_id]};</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Determines whether duplicate keys in the reference data should be treated as errors when full cache mode is used."
+                  name="TreatDuplicateKeysAsError">false</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SSISDB - Detail\Lookup.Connections[OleDbConnection]"
+                  connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                  description="Connection manager used to access lookup data."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SSISDB - Detail\Lookup.Inputs[Lookup Input]"
+                  name="Lookup Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SSISDB - Detail\Lookup.Inputs[Lookup Input].Columns[operation_id]"
+                      cachedDataType="i4"
+                      cachedName="operation_id"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[operation_id]">
+                      <properties>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the column in the reference table that a column joins."
+                          name="JoinToReferenceColumn">operation_id</property>
+                        <property
+                          dataType="System.Null"
+                          description="Specifies the column in the reference table from which a column is copied."
+                          name="CopyFromReferenceColumn" />
+                      </properties>
+                    </inputColumn>
+                  </inputColumns>
+                  <externalMetadataColumns />
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SSISDB - Detail\Lookup.Outputs[Lookup Match Output]"
+                  errorOrTruncationOperation="Lookup"
+                  exclusionGroup="1"
+                  name="Lookup Match Output"
+                  synchronousInputId="Package\SSISDB - Detail\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SSISDB - Detail\Lookup.Outputs[Lookup No Match Output]"
+                  description="The Lookup output that handles rows with no matching entries in the reference dataset. Use this output when the NoMatchBehavior property is set to &quot;Send rows with no matching entries to the no match output.&quot;"
+                  exclusionGroup="1"
+                  name="Lookup No Match Output"
+                  synchronousInputId="Package\SSISDB - Detail\Lookup.Inputs[Lookup Input]">
+                  <externalMetadataColumns />
+                </output>
+                <output
+                  refId="Package\SSISDB - Detail\Lookup.Outputs[Lookup Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="Lookup Error Output"
+                  synchronousInputId="Package\SSISDB - Detail\Lookup.Inputs[Lookup Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB - Detail\Lookup.Outputs[Lookup Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB - Detail\Lookup.Outputs[Lookup Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SSISDB - Detail\OLE DB Destination"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="OLE DB Destination"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[tbl_WHLSSIS01_SSISDB_Detail]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SSISDB - Detail\OLE DB Destination.Connections[OleDbConnection]"
+                  connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[operation_id]"
+                      cachedDataType="i4"
+                      cachedName="operation_id"
+                      externalMetadataColumnId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[operation_id]"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[operation_id]" />
+                    <inputColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[object_name]"
+                      cachedDataType="wstr"
+                      cachedLength="260"
+                      cachedName="object_name"
+                      externalMetadataColumnId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[object_name]"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[object_name]" />
+                    <inputColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[message_time]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="message_time"
+                      externalMetadataColumnId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[message_time]"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[message_time]" />
+                    <inputColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[message]"
+                      cachedDataType="wstr"
+                      cachedLength="2000"
+                      cachedName="message"
+                      externalMetadataColumnId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[message]"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[message]" />
+                    <inputColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[package_path]"
+                      cachedDataType="wstr"
+                      cachedLength="2000"
+                      cachedName="package_path"
+                      externalMetadataColumnId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[package_path]"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[package_path]" />
+                    <inputColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[package_name]"
+                      cachedDataType="wstr"
+                      cachedLength="260"
+                      cachedName="package_name"
+                      externalMetadataColumnId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[package_name]"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[package_name]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[operation_id]"
+                      dataType="i4"
+                      name="operation_id" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[object_name]"
+                      dataType="wstr"
+                      length="260"
+                      name="object_name" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[message_time]"
+                      dataType="dbTimeStamp"
+                      name="message_time" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[message]"
+                      dataType="wstr"
+                      length="2000"
+                      name="message" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[package_path]"
+                      dataType="wstr"
+                      length="2000"
+                      name="package_path" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[package_name]"
+                      dataType="wstr"
+                      length="260"
+                      name="package_name" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SSISDB - Detail\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB - Detail\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB - Detail\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SSISDB - Detail\SSISDB"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SSISDB"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset"></property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">select 
+		o.operation_id,
+		o.object_name,
+		CAST(message_time as datetime) as message_time,
+		message,
+		ei.package_name,
+		REPLACE(package_path,'\Package\','') as package_path
+
+FROM [SSISDB].[internal].[operations] o
+LEFT JOIN [SSISDB].[internal].[projects] p
+	ON o.object_id = p.project_id 
+LEFT JOIN [SSISDB].[internal].[folders] f
+	ON p.folder_id = f.folder_id
+LEFT JOIN  [SSISDB].[internal].[execution_info] ei
+	ON o.operation_id = ei.execution_id
+LEFT JOIN SSISDB.internal.operation_messages m  
+	ON o.operation_id = m.operation_id  
+LEFT JOIN SSISDB.internal.event_messages e  
+	ON m.operation_id = e.operation_id AND m.operation_message_id = e.event_message_id  
+	WHERE execution_id in (SELECT execution_id FROM catalog.executions WHERE folder_name = 'Finance')
+	--AND message NOT LIKE '%validation%'
+ORDER BY message_time DESC</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SSISDB - Detail\SSISDB.Connections[OleDbConnection]"
+                  connectionManagerID="{5F34C85D-E30C-4B29-BC1D-E2C6D7AADFF1}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[WHLSSIS01.SSISDB]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[operation_id]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[operation_id]"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[operation_id]"
+                      name="operation_id"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[object_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[object_name]"
+                      length="260"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[object_name]"
+                      name="object_name"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[message_time]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[message_time]"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[message_time]"
+                      name="message_time"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[message]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[message]"
+                      length="2000"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[message]"
+                      name="message"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[package_path]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[package_path]"
+                      length="2000"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[package_path]"
+                      name="package_path"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[package_name]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[package_name]"
+                      length="260"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].Columns[package_name]"
+                      name="package_name"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[operation_id]"
+                      dataType="i8"
+                      name="operation_id" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[object_name]"
+                      dataType="wstr"
+                      length="260"
+                      name="object_name" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[message_time]"
+                      dataType="dbTimeStamp"
+                      name="message_time" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[message]"
+                      dataType="nText"
+                      name="message" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[package_path]"
+                      dataType="nText"
+                      name="package_path" />
+                    <externalMetadataColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output].ExternalColumns[package_name]"
+                      dataType="wstr"
+                      length="260"
+                      name="package_name" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[operation_id]"
+                      dataType="i8"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[operation_id]"
+                      name="operation_id" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[object_name]"
+                      dataType="wstr"
+                      length="260"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[object_name]"
+                      name="object_name" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[message_time]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[message_time]"
+                      name="message_time" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[message]"
+                      dataType="nText"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[message]"
+                      name="message" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[package_name]"
+                      dataType="wstr"
+                      length="260"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[package_name]"
+                      name="package_name" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[package_path]"
+                      dataType="nText"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[package_path]"
+                      name="package_path" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\SSISDB - Detail.Paths[Lookup No Match Output]"
+              endId="Package\SSISDB - Detail\OLE DB Destination.Inputs[OLE DB Destination Input]"
+              name="Lookup No Match Output"
+              startId="Package\SSISDB - Detail\Lookup.Outputs[Lookup No Match Output]" />
+            <path
+              refId="Package\SSISDB - Detail.Paths[OLE DB Source Output]"
+              endId="Package\SSISDB - Detail\Lookup.Inputs[Lookup Input]"
+              name="OLE DB Source Output"
+              startId="Package\SSISDB - Detail\SSISDB.Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph">
+        <NodeLayout
+          Size="114.666666666667,42.6666666666667"
+          Id="Package\SSISDB"
+          TopLeft="50.6249992456287,57.8499989655614" />
+        <NodeLayout
+          Size="152,42.6666666666667"
+          Id="Package\SSISDB - Detail"
+          TopLeft="223.124996675178,57.1999989771843" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SSISDB">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="135.333333333334,42.6666666666667"
+          Id="Package\SSISDB\WHLSSIS01"
+          TopLeft="44.9999993294478,23.3999995815754" />
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\SSISDB\Lookup"
+          TopLeft="86.2499987147749,137.799997535944" />
+        <NodeLayout
+          Size="194.666666666667,42.6666666666667"
+          Id="Package\SSISDB\tbl_WHLSSIS01_SSISDB"
+          TopLeft="56.2499991618097,247.649995571673" />
+        <EdgeLayout
+          Id="Package\SSISDB.Paths[OLE DB Source Output]"
+          TopLeft="112.666665996114,66.0666662482421">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="30.2499993853271,71.7333312877019"
+              Start="0,0"
+              End="30.2499993853271,64.2333312877019">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31.866665643851" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,31.866665643851"
+                    Point2="0,35.866665643851"
+                    Point3="4,35.866665643851" />
+                  <mssgle:LineSegment
+                    End="26.2499993853271,35.866665643851" />
+                  <mssgle:CubicBezierSegment
+                    Point1="26.2499993853271,35.866665643851"
+                    Point2="30.2499993853271,35.866665643851"
+                    Point3="30.2499993853271,39.866665643851" />
+                  <mssgle:LineSegment
+                    End="30.2499993853271,64.2333312877019" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SSISDB.Paths[Lookup No Match Output]"
+          TopLeft="142.916665381442,180.466664202611">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="10.6666671137015,67.1833313690623"
+              Start="0,0"
+              End="10.6666671137015,59.6833313690623">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,29.5916656845311" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,29.5916656845311"
+                    Point2="0,33.5916656845311"
+                    Point3="4,33.5916656845311" />
+                  <mssgle:LineSegment
+                    End="6.66666711370152,33.5916656845311" />
+                  <mssgle:CubicBezierSegment
+                    Point1="6.66666711370152,33.5916656845311"
+                    Point2="10.6666671137015,33.5916656845311"
+                    Point3="10.6666671137015,37.5916656845311" />
+                  <mssgle:LineSegment
+                    End="10.6666671137015,59.6833313690623" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-50.4730531618992,38.5916656845311,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SSISDB\WHLSSIS01">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SSISDB\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[tbl_WHLSSIS01_SSISDB]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SSISDB\tbl_WHLSSIS01_SSISDB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\SSISDB - Detail">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="114.666666666667,42.6666666666667"
+          Id="Package\SSISDB - Detail\SSISDB"
+          TopLeft="34.1666666666667,5.50000000000004" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\SSISDB - Detail\OLE DB Destination"
+          TopLeft="5.50000000000003,210.833333333334" />
+        <NodeLayout
+          Size="113.333333333334,42.6666666666667"
+          Id="Package\SSISDB - Detail\Lookup"
+          TopLeft="34.8333333333334,108.166666666667" />
+        <EdgeLayout
+          Id="Package\SSISDB - Detail.Paths[OLE DB Source Output]"
+          TopLeft="91.5,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SSISDB - Detail.Paths[Lookup No Match Output]"
+          TopLeft="91.5,150.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-55.80638671875,20.4453125000001,111.6127734375,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SSISDB - Detail\SSISDB">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SSISDB - Detail\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SSISDB - Detail\Lookup">
+    <Properties>
+      <Property>
+        <Name>OverwriteParamsSQLProp</Name>
+        <Value
+          type="q2:string">false</Value>
+      </Property>
+      <Property>
+        <Name>UsedTableName</Name>
+        <Value
+          type="q3:string">[dbo].[tbl_WHLSSIS01_SSISDB_Detail]</Value>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q4:string">0</Value>
+      </Property>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,2279 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="6/7/2022 11:13:43 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WHLDOMTS01"
+  DTS:CreatorName="WHLBASE\biadmin-ivan.nel"
+  DTS:DTSID="{8A789849-DB70-49C1-AED0-60406B33CC91}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.5626.31"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Package1"
+  DTS:PackageType="5"
+  DTS:VersionBuild="7"
+  DTS:VersionGUID="{2B49E903-32BD-4357-A33A-FBD5D98BED24}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Bet"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{efe6f21d-cc8d-4592-9a40-845e5be8759a}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Bet">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Bet\DFT BET"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{80c146a8-9158-4c96-b548-2a727c27c36d}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT BET"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet)"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet)"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  *
+FROM [Vuvuzela].Jackpot.Bet
+WHERE [EditedDateTime] &gt;= CAST(GETDATE() -14 AS DATE)
+AND [EditedDateTime] &lt; CAST(GETDATE() AS DATE)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Connections[OleDbConnection]"
+                      connectionManagerID="{11938FDE-7DA3-415F-A2AD-1C86AD68390D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[172.27.0.79.Vuvuzela.DOSBISUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[BetslipId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[BetslipId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[BetslipId]"
+                          name="BetslipId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          name="EditedDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EditedById]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EditedById]"
+                          name="EditedById"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[Version]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[Version]"
+                          name="Version"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          name="IsDeleted"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[ResultingStatus]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[ResultingStatus]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[ResultingStatus]"
+                          name="ResultingStatus"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[ResultingDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[ResultingDateTime]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[ResultingDateTime]"
+                          name="ResultingDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[BetId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[BetId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[BetId]"
+                          name="BetId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[Odds]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[Odds]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[Odds]"
+                          name="Odds"
+                          precision="14"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EventId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[EventId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EventId]"
+                          name="EventId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EventTitle]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[EventTitle]"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EventTitle]"
+                          name="EventTitle"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[HomeTeamId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[HomeTeamId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[HomeTeamId]"
+                          name="HomeTeamId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[HomeTeamName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[HomeTeamName]"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[HomeTeamName]"
+                          name="HomeTeamName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[AwayTeamId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[AwayTeamId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[AwayTeamId]"
+                          name="AwayTeamId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[AwayTeamName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[AwayTeamName]"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[AwayTeamName]"
+                          name="AwayTeamName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[SportId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[SportId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[SportId]"
+                          name="SportId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[SportTitle]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[SportTitle]"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[SportTitle]"
+                          name="SportTitle"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[LeagueId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[LeagueId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[LeagueId]"
+                          name="LeagueId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[LeagueTitle]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[LeagueTitle]"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[LeagueTitle]"
+                          name="LeagueTitle"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[MarketId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[MarketId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[MarketId]"
+                          name="MarketId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[MarketTypeId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[MarketTypeId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[MarketTypeId]"
+                          name="MarketTypeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[MarketTypeTitle]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[MarketTypeTitle]"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[MarketTypeTitle]"
+                          name="MarketTypeTitle"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[OutcomeId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[OutcomeId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[OutcomeId]"
+                          name="OutcomeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[OutcomeTitle]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[OutcomeTitle]"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[OutcomeTitle]"
+                          name="OutcomeTitle"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[WinningOutcome]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[WinningOutcome]"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[WinningOutcome]"
+                          name="WinningOutcome"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[WinningOutcomeId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[WinningOutcomeId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[WinningOutcomeId]"
+                          name="WinningOutcomeId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[Region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[Region]"
+                          name="Region"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[BetslipId]"
+                          dataType="guid"
+                          name="BetslipId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          dataType="ui1"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[ResultingStatus]"
+                          dataType="ui1"
+                          name="ResultingStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[ResultingDateTime]"
+                          dataType="dbTimeStamp"
+                          name="ResultingDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[BetId]"
+                          dataType="guid"
+                          name="BetId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[Odds]"
+                          dataType="numeric"
+                          name="Odds"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[EventId]"
+                          dataType="guid"
+                          name="EventId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[EventTitle]"
+                          dataType="wstr"
+                          length="800"
+                          name="EventTitle" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[HomeTeamId]"
+                          dataType="guid"
+                          name="HomeTeamId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[HomeTeamName]"
+                          dataType="wstr"
+                          length="800"
+                          name="HomeTeamName" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[AwayTeamId]"
+                          dataType="guid"
+                          name="AwayTeamId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[AwayTeamName]"
+                          dataType="wstr"
+                          length="800"
+                          name="AwayTeamName" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[SportId]"
+                          dataType="guid"
+                          name="SportId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[SportTitle]"
+                          dataType="wstr"
+                          length="800"
+                          name="SportTitle" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[LeagueId]"
+                          dataType="guid"
+                          name="LeagueId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[LeagueTitle]"
+                          dataType="wstr"
+                          length="800"
+                          name="LeagueTitle" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[MarketId]"
+                          dataType="guid"
+                          name="MarketId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[MarketTypeId]"
+                          dataType="guid"
+                          name="MarketTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[MarketTypeTitle]"
+                          dataType="wstr"
+                          length="800"
+                          name="MarketTypeTitle" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[OutcomeId]"
+                          dataType="guid"
+                          name="OutcomeId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[OutcomeTitle]"
+                          dataType="wstr"
+                          length="800"
+                          name="OutcomeTitle" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[WinningOutcome]"
+                          dataType="wstr"
+                          length="800"
+                          name="WinningOutcome" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[WinningOutcomeId]"
+                          dataType="guid"
+                          name="WinningOutcomeId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="800"
+                          name="Region" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[BetId]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[BetId]"
+                          name="BetId" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[BetslipId]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[BetslipId]"
+                          name="BetslipId" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[Odds]"
+                          dataType="numeric"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[Odds]"
+                          name="Odds"
+                          precision="14"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[EventId]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[EventId]"
+                          name="EventId" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[EventTitle]"
+                          dataType="wstr"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[EventTitle]"
+                          name="EventTitle" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[HomeTeamId]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[HomeTeamId]"
+                          name="HomeTeamId" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[HomeTeamName]"
+                          dataType="wstr"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[HomeTeamName]"
+                          name="HomeTeamName" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[AwayTeamId]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[AwayTeamId]"
+                          name="AwayTeamId" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[AwayTeamName]"
+                          dataType="wstr"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[AwayTeamName]"
+                          name="AwayTeamName" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[SportId]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[SportId]"
+                          name="SportId" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[SportTitle]"
+                          dataType="wstr"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[SportTitle]"
+                          name="SportTitle" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[LeagueId]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[LeagueId]"
+                          name="LeagueId" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[LeagueTitle]"
+                          dataType="wstr"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[LeagueTitle]"
+                          name="LeagueTitle" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[MarketId]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[MarketId]"
+                          name="MarketId" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[MarketTypeId]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[MarketTypeId]"
+                          name="MarketTypeId" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[MarketTypeTitle]"
+                          dataType="wstr"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[MarketTypeTitle]"
+                          name="MarketTypeTitle" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[OutcomeId]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[OutcomeId]"
+                          name="OutcomeId" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[OutcomeTitle]"
+                          dataType="wstr"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[OutcomeTitle]"
+                          name="OutcomeTitle" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[WinningOutcome]"
+                          dataType="wstr"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[WinningOutcome]"
+                          name="WinningOutcome" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[ResultingStatus]"
+                          dataType="ui1"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[ResultingStatus]"
+                          name="ResultingStatus" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[ResultingDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[ResultingDateTime]"
+                          name="ResultingDateTime" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          name="EditedDateTime" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          name="EditedById" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[Version]"
+                          dataType="i4"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[Version]"
+                          name="Version" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          dataType="ui1"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          name="IsDeleted" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[WinningOutcomeId]"
+                          dataType="guid"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[WinningOutcomeId]"
+                          name="WinningOutcomeId" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[Region]"
+                          dataType="wstr"
+                          length="800"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[Region]"
+                          name="Region" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet)"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet)"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Vuvuzela].[Stage_Jackpot_Bet]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Connections[OleDbConnection]"
+                      connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[BetslipId]"
+                          cachedDataType="guid"
+                          cachedName="BetslipId"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[BetslipId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[BetslipId]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[EditedDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="EditedDateTime"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EditedDateTime]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[EditedById]"
+                          cachedDataType="guid"
+                          cachedName="EditedById"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EditedById]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[Version]"
+                          cachedDataType="i4"
+                          cachedName="Version"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[Version]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[IsDeleted]"
+                          cachedDataType="ui1"
+                          cachedName="IsDeleted"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[IsDeleted]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[ResultingStatus]"
+                          cachedDataType="ui1"
+                          cachedName="ResultingStatus"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[ResultingStatus]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[ResultingStatus]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[ResultingDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ResultingDateTime"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[ResultingDateTime]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[ResultingDateTime]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[BetId]"
+                          cachedDataType="guid"
+                          cachedName="BetId"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[BetId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[BetId]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[Odds]"
+                          cachedDataType="numeric"
+                          cachedName="Odds"
+                          cachedPrecision="14"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[Odds]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[Odds]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[EventId]"
+                          cachedDataType="guid"
+                          cachedName="EventId"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[EventId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EventId]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[EventTitle]"
+                          cachedDataType="wstr"
+                          cachedLength="800"
+                          cachedName="EventTitle"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[EventTitle]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[EventTitle]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[HomeTeamId]"
+                          cachedDataType="guid"
+                          cachedName="HomeTeamId"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[HomeTeamId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[HomeTeamId]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[HomeTeamName]"
+                          cachedDataType="wstr"
+                          cachedLength="800"
+                          cachedName="HomeTeamName"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[HomeTeamName]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[HomeTeamName]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[AwayTeamId]"
+                          cachedDataType="guid"
+                          cachedName="AwayTeamId"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[AwayTeamId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[AwayTeamId]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[AwayTeamName]"
+                          cachedDataType="wstr"
+                          cachedLength="800"
+                          cachedName="AwayTeamName"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[AwayTeamName]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[AwayTeamName]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[SportId]"
+                          cachedDataType="guid"
+                          cachedName="SportId"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[SportId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[SportId]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[SportTitle]"
+                          cachedDataType="wstr"
+                          cachedLength="800"
+                          cachedName="SportTitle"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[SportTitle]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[SportTitle]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[LeagueId]"
+                          cachedDataType="guid"
+                          cachedName="LeagueId"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[LeagueId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[LeagueId]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[LeagueTitle]"
+                          cachedDataType="wstr"
+                          cachedLength="800"
+                          cachedName="LeagueTitle"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[LeagueTitle]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[LeagueTitle]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[MarketId]"
+                          cachedDataType="guid"
+                          cachedName="MarketId"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[MarketId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[MarketId]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[MarketTypeId]"
+                          cachedDataType="guid"
+                          cachedName="MarketTypeId"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[MarketTypeId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[MarketTypeId]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[MarketTypeTitle]"
+                          cachedDataType="wstr"
+                          cachedLength="800"
+                          cachedName="MarketTypeTitle"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[MarketTypeTitle]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[MarketTypeTitle]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[OutcomeId]"
+                          cachedDataType="guid"
+                          cachedName="OutcomeId"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[OutcomeId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[OutcomeId]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[OutcomeTitle]"
+                          cachedDataType="wstr"
+                          cachedLength="800"
+                          cachedName="OutcomeTitle"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[OutcomeTitle]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[OutcomeTitle]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[WinningOutcome]"
+                          cachedDataType="wstr"
+                          cachedLength="800"
+                          cachedName="WinningOutcome"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[WinningOutcome]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[WinningOutcome]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[WinningOutcomeId]"
+                          cachedDataType="guid"
+                          cachedName="WinningOutcomeId"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[WinningOutcomeId]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[WinningOutcomeId]" />
+                        <inputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].Columns[Region]"
+                          cachedDataType="wstr"
+                          cachedLength="800"
+                          cachedName="Region"
+                          externalMetadataColumnId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          lineageId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output].Columns[Region]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[BetslipId]"
+                          dataType="guid"
+                          name="BetslipId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="ui1"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[ResultingStatus]"
+                          dataType="ui1"
+                          name="ResultingStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[ResultingDateTime]"
+                          dataType="dbTimeStamp"
+                          name="ResultingDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[BetId]"
+                          dataType="guid"
+                          name="BetId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[Odds]"
+                          dataType="numeric"
+                          name="Odds"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[EventId]"
+                          dataType="guid"
+                          name="EventId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[EventTitle]"
+                          dataType="wstr"
+                          length="800"
+                          name="EventTitle" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[HomeTeamId]"
+                          dataType="guid"
+                          name="HomeTeamId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[HomeTeamName]"
+                          dataType="wstr"
+                          length="800"
+                          name="HomeTeamName" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[AwayTeamId]"
+                          dataType="guid"
+                          name="AwayTeamId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[AwayTeamName]"
+                          dataType="wstr"
+                          length="800"
+                          name="AwayTeamName" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[SportId]"
+                          dataType="guid"
+                          name="SportId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[SportTitle]"
+                          dataType="wstr"
+                          length="800"
+                          name="SportTitle" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[LeagueId]"
+                          dataType="guid"
+                          name="LeagueId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[LeagueTitle]"
+                          dataType="wstr"
+                          length="800"
+                          name="LeagueTitle" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[MarketId]"
+                          dataType="guid"
+                          name="MarketId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[MarketTypeId]"
+                          dataType="guid"
+                          name="MarketTypeId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[MarketTypeTitle]"
+                          dataType="wstr"
+                          length="800"
+                          name="MarketTypeTitle" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[OutcomeId]"
+                          dataType="guid"
+                          name="OutcomeId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[OutcomeTitle]"
+                          dataType="wstr"
+                          length="800"
+                          name="OutcomeTitle" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[WinningOutcome]"
+                          dataType="wstr"
+                          length="800"
+                          name="WinningOutcome" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[WinningOutcomeId]"
+                          dataType="guid"
+                          name="WinningOutcomeId" />
+                        <externalMetadataColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="800"
+                          name="Region" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Bet\DFT BET.Paths[OLE DB Source Output]"
+                  endId="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet).Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet).Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Bet\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Jackpot_Bet)"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{b8f7d998-d689-44ec-8a77-6ddd99aab7e7}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Jackpot_Bet)"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[sp_Stage_JackPot_Bet]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Bet\TRUNCATE (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot)(Bet)"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{ca7693a3-7af1-4457-977f-b7efdcbacd9b}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot)(Bet)"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE [Vuvuzela].[Stage_Jackpot_Bet]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Bet.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{a6aea51c-f1b4-470f-87ae-f1b00a38c198}"
+          DTS:From="Package\Bet\DFT BET"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Bet\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Jackpot_Bet)" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Bet.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{ff53e4c4-2497-4095-94d6-f2f2dba660f3}"
+          DTS:From="Package\Bet\TRUNCATE (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot)(Bet)"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Bet\DFT BET" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\Betslip"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{317308b1-8943-4ad2-98d7-13f41b7ff31f}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Betslip">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Betslip\DFT BETSLIP"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{47e883d3-83c0-479c-9c0d-53c4a250ab46}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DFT BETSLIP"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip)"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip)"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT  *
+  FROM [Vuvuzela].Jackpot.Betslip
+ WHERE [SettlementDateTime]&gt;=CAST(DATEADD(dd,-7,GETDATE()) AS DATE)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Connections[OleDbConnection]"
+                      connectionManagerID="{11938FDE-7DA3-415F-A2AD-1C86AD68390D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[172.27.0.79.Vuvuzela.DOSBISUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[BetslipId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[BetslipId]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[BetslipId]"
+                          name="BetslipId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[AccountId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[AccountId]"
+                          name="AccountId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          name="EditedDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[EditedById]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[EditedById]"
+                          name="EditedById"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[Version]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[Version]"
+                          name="Version"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          name="IsDeleted"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[JackpotId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[JackpotId]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[JackpotId]"
+                          name="JackpotId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[BetslipSequenceId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[BetslipSequenceId]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[BetslipSequenceId]"
+                          name="BetslipSequenceId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[WagerAmount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[WagerAmount]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[WagerAmount]"
+                          name="WagerAmount"
+                          precision="14"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[TotalPriceDecimal]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[TotalPriceDecimal]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[TotalPriceDecimal]"
+                          name="TotalPriceDecimal"
+                          precision="14"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[PotentialReturnAmount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[PotentialReturnAmount]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[PotentialReturnAmount]"
+                          name="PotentialReturnAmount"
+                          precision="14"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[ActualReturnAmount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[ActualReturnAmount]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[ActualReturnAmount]"
+                          name="ActualReturnAmount"
+                          precision="14"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[NoOfBets]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[NoOfBets]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[NoOfBets]"
+                          name="NoOfBets"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[ResultingStatus]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[ResultingStatus]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[ResultingStatus]"
+                          name="ResultingStatus"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[ResultingDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[ResultingDateTime]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[ResultingDateTime]"
+                          name="ResultingDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[SettlementStatus]"
+                          dataType="ui1"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[SettlementStatus]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[SettlementStatus]"
+                          name="SettlementStatus"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[SettlementDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[SettlementDateTime]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[SettlementDateTime]"
+                          name="SettlementDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[CreatedDateTime]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[CreatedDateTime]"
+                          name="CreatedDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[TotalLines]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[TotalLines]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[TotalLines]"
+                          name="TotalLines"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[NoOfResultedBets]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[NoOfResultedBets]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[NoOfResultedBets]"
+                          name="NoOfResultedBets"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[BetslipId]"
+                          dataType="guid"
+                          name="BetslipId" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                          dataType="guid"
+                          name="AccountId" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          dataType="ui1"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[JackpotId]"
+                          dataType="guid"
+                          name="JackpotId" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[BetslipSequenceId]"
+                          dataType="i4"
+                          name="BetslipSequenceId" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[WagerAmount]"
+                          dataType="numeric"
+                          name="WagerAmount"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[TotalPriceDecimal]"
+                          dataType="numeric"
+                          name="TotalPriceDecimal"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[PotentialReturnAmount]"
+                          dataType="numeric"
+                          name="PotentialReturnAmount"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[ActualReturnAmount]"
+                          dataType="numeric"
+                          name="ActualReturnAmount"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[NoOfBets]"
+                          dataType="i4"
+                          name="NoOfBets" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[ResultingStatus]"
+                          dataType="ui1"
+                          name="ResultingStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[ResultingDateTime]"
+                          dataType="dbTimeStamp"
+                          name="ResultingDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[SettlementStatus]"
+                          dataType="ui1"
+                          name="SettlementStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[SettlementDateTime]"
+                          dataType="dbTimeStamp"
+                          name="SettlementDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="CreatedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[TotalLines]"
+                          dataType="i4"
+                          name="TotalLines" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].ExternalColumns[NoOfResultedBets]"
+                          dataType="i4"
+                          name="NoOfResultedBets" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[BetslipId]"
+                          dataType="guid"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[BetslipId]"
+                          name="BetslipId" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[JackpotId]"
+                          dataType="guid"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[JackpotId]"
+                          name="JackpotId" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                          dataType="guid"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                          name="AccountId" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[BetslipSequenceId]"
+                          dataType="i4"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[BetslipSequenceId]"
+                          name="BetslipSequenceId" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[WagerAmount]"
+                          dataType="numeric"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[WagerAmount]"
+                          name="WagerAmount"
+                          precision="14"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[TotalPriceDecimal]"
+                          dataType="numeric"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[TotalPriceDecimal]"
+                          name="TotalPriceDecimal"
+                          precision="14"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[PotentialReturnAmount]"
+                          dataType="numeric"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[PotentialReturnAmount]"
+                          name="PotentialReturnAmount"
+                          precision="14"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[ActualReturnAmount]"
+                          dataType="numeric"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[ActualReturnAmount]"
+                          name="ActualReturnAmount"
+                          precision="14"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[NoOfBets]"
+                          dataType="i4"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[NoOfBets]"
+                          name="NoOfBets" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[ResultingStatus]"
+                          dataType="ui1"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[ResultingStatus]"
+                          name="ResultingStatus" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[ResultingDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[ResultingDateTime]"
+                          name="ResultingDateTime" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[SettlementStatus]"
+                          dataType="ui1"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[SettlementStatus]"
+                          name="SettlementStatus" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[SettlementDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[SettlementDateTime]"
+                          name="SettlementDateTime" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[CreatedDateTime]"
+                          name="CreatedDateTime" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          name="EditedDateTime" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          dataType="guid"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          name="EditedById" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[Version]"
+                          dataType="i4"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[Version]"
+                          name="Version" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          dataType="ui1"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          name="IsDeleted" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[TotalLines]"
+                          dataType="i4"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[TotalLines]"
+                          name="TotalLines" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[NoOfResultedBets]"
+                          dataType="i4"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[NoOfResultedBets]"
+                          name="NoOfResultedBets" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip)"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip)"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Vuvuzela].[Stage_Jackpot_Betslip]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">CHECK_CONSTRAINTS,ROWS_PER_BATCH = 100000</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Connections[OleDbConnection]"
+                      connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[BetslipId]"
+                          cachedDataType="guid"
+                          cachedName="BetslipId"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[BetslipId]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[BetslipId]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[AccountId]"
+                          cachedDataType="guid"
+                          cachedName="AccountId"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[AccountId]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[EditedDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="EditedDateTime"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[EditedDateTime]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[EditedById]"
+                          cachedDataType="guid"
+                          cachedName="EditedById"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[EditedById]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[Version]"
+                          cachedDataType="i4"
+                          cachedName="Version"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[Version]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[IsDeleted]"
+                          cachedDataType="ui1"
+                          cachedName="IsDeleted"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[IsDeleted]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[JackpotId]"
+                          cachedDataType="guid"
+                          cachedName="JackpotId"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[JackpotId]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[JackpotId]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[BetslipSequenceId]"
+                          cachedDataType="i4"
+                          cachedName="BetslipSequenceId"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[BetslipSequenceId]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[BetslipSequenceId]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[WagerAmount]"
+                          cachedDataType="numeric"
+                          cachedName="WagerAmount"
+                          cachedPrecision="14"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[WagerAmount]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[WagerAmount]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[TotalPriceDecimal]"
+                          cachedDataType="numeric"
+                          cachedName="TotalPriceDecimal"
+                          cachedPrecision="14"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[TotalPriceDecimal]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[TotalPriceDecimal]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[PotentialReturnAmount]"
+                          cachedDataType="numeric"
+                          cachedName="PotentialReturnAmount"
+                          cachedPrecision="14"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[PotentialReturnAmount]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[PotentialReturnAmount]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[ActualReturnAmount]"
+                          cachedDataType="numeric"
+                          cachedName="ActualReturnAmount"
+                          cachedPrecision="14"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[ActualReturnAmount]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[ActualReturnAmount]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[NoOfBets]"
+                          cachedDataType="i4"
+                          cachedName="NoOfBets"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[NoOfBets]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[NoOfBets]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[ResultingStatus]"
+                          cachedDataType="ui1"
+                          cachedName="ResultingStatus"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[ResultingStatus]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[ResultingStatus]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[ResultingDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="ResultingDateTime"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[ResultingDateTime]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[ResultingDateTime]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[SettlementStatus]"
+                          cachedDataType="ui1"
+                          cachedName="SettlementStatus"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[SettlementStatus]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[SettlementStatus]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[SettlementDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="SettlementDateTime"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[SettlementDateTime]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[SettlementDateTime]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[CreatedDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="CreatedDateTime"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[CreatedDateTime]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[CreatedDateTime]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[TotalLines]"
+                          cachedDataType="i4"
+                          cachedName="TotalLines"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[TotalLines]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[TotalLines]" />
+                        <inputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].Columns[NoOfResultedBets]"
+                          cachedDataType="i4"
+                          cachedName="NoOfResultedBets"
+                          externalMetadataColumnId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[NoOfResultedBets]"
+                          lineageId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output].Columns[NoOfResultedBets]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[BetslipId]"
+                          dataType="guid"
+                          name="BetslipId" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                          dataType="guid"
+                          name="AccountId" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="ui1"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[JackpotId]"
+                          dataType="guid"
+                          name="JackpotId" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[BetslipSequenceId]"
+                          dataType="i4"
+                          name="BetslipSequenceId" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[WagerAmount]"
+                          dataType="numeric"
+                          name="WagerAmount"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[TotalPriceDecimal]"
+                          dataType="numeric"
+                          name="TotalPriceDecimal"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[PotentialReturnAmount]"
+                          dataType="numeric"
+                          name="PotentialReturnAmount"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[ActualReturnAmount]"
+                          dataType="numeric"
+                          name="ActualReturnAmount"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[NoOfBets]"
+                          dataType="i4"
+                          name="NoOfBets" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[ResultingStatus]"
+                          dataType="ui1"
+                          name="ResultingStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[ResultingDateTime]"
+                          dataType="dbTimeStamp"
+                          name="ResultingDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[SettlementStatus]"
+                          dataType="ui1"
+                          name="SettlementStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[SettlementDateTime]"
+                          dataType="dbTimeStamp"
+                          name="SettlementDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="CreatedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[TotalLines]"
+                          dataType="i4"
+                          name="TotalLines" />
+                        <externalMetadataColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input].ExternalColumns[NoOfResultedBets]"
+                          dataType="i4"
+                          name="NoOfResultedBets" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Betslip\DFT BETSLIP.Paths[OLE DB Source Output]"
+                  endId="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip).Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip).Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Betslip\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Jackpot_Betslip)"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{3740bf0a-0ada-4c75-a0b8-d188a41f9ec4}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Jackpot_Betslip)"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[sp_Stage_JackPot_Betslip]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Betslip\TRUNCATE (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot)(Betslip)"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{c4db0cca-53d3-490f-a0c5-11d6f884469f}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot)(Betslip)"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE [Vuvuzela].[Stage_Jackpot_Betslip]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Betslip.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{c0beadf7-72bf-43a5-96d1-a3ff2fdaea43}"
+          DTS:From="Package\Betslip\DFT BETSLIP"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\Betslip\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Jackpot_Betslip)" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Betslip.PrecedenceConstraints[Constraint 2]"
+          DTS:CreationName=""
+          DTS:DTSID="{23ba387e-43c5-4d81-9b9b-69e206fd0425}"
+          DTS:From="Package\Betslip\TRUNCATE (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot)(Betslip)"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 2"
+          DTS:To="Package\Betslip\DFT BETSLIP" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{28C81109-C179-4D5E-9DB6-0D97FCF79F41}"
+      DTS:From="Package\Betslip"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Bet"
+      DTS:Value="2" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="120,42.6666666666667"
+          Id="Package\Bet\DFT BET"
+          TopLeft="168.166666666667,108.166666666667" />
+        <NodeLayout
+          Size="406.666666666667,42.6666666666667"
+          Id="Package\Bet\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Jackpot_Bet)"
+          TopLeft="24.8333333333333,210.833333333334" />
+        <NodeLayout
+          Size="445.333333333334,42.6666666666667"
+          Id="Package\Bet\TRUNCATE (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot)(Bet)"
+          TopLeft="5.5,5.50000000000004" />
+        <EdgeLayout
+          Id="Package\Bet.PrecedenceConstraints[Constraint 1]"
+          TopLeft="228.166666666667,150.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Bet.PrecedenceConstraints[Constraint 2]"
+          TopLeft="228.166666666667,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="456,308.666666666667"
+          Size="456,351.333333333334"
+          Id="Package\Bet"
+          TopLeft="12.8333333333334,416.833333333334" />
+        <NodeLayout
+          Size="141.333333333334,42.6666666666667"
+          Id="Package\Betslip\DFT BETSLIP"
+          TopLeft="164.833333333333,108.166666666667" />
+        <NodeLayout
+          Size="422.666666666667,42.6666666666667"
+          Id="Package\Betslip\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Jackpot_Betslip)"
+          TopLeft="24.1666666666667,210.833333333334" />
+        <NodeLayout
+          Size="460,42.6666666666667"
+          Id="Package\Betslip\TRUNCATE (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot)(Betslip)"
+          TopLeft="5.5,5.50000000000004" />
+        <EdgeLayout
+          Id="Package\Betslip.PrecedenceConstraints[Constraint 1]"
+          TopLeft="235.5,150.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Betslip.PrecedenceConstraints[Constraint 2]"
+          TopLeft="235.5,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="470.666666666667,308.666666666667"
+          Size="470.666666666667,351.333333333334"
+          Id="Package\Betslip"
+          TopLeft="5.50000000000003,5.50000000000009" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="240.833333333333,356.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000002"
+              Start="0,0"
+              End="0,52.5000000000002">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000002" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,20.4453125000001,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Bet\DFT BET">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="312,42.6666666666667"
+          Id="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet)"
+          TopLeft="64.1666666666667,5.50000000000004" />
+        <NodeLayout
+          Size="429.333333333334,42.6666666666667"
+          Id="Package\Bet\DFT BET\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Bet)"
+          TopLeft="5.50000000000003,108.166666666667" />
+        <EdgeLayout
+          Id="Package\Bet\DFT BET.Paths[OLE DB Source Output]"
+          TopLeft="220.166666666667,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Bet\DFT BET\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Bet)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\Betslip\DFT BETSLIP">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="328,42.6666666666667"
+          Id="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip)"
+          TopLeft="63.5,5.50000000000004" />
+        <NodeLayout
+          Size="444,42.6666666666667"
+          Id="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip)"
+          TopLeft="5.50000000000003,108.166666666667" />
+        <EdgeLayout
+          Id="Package\Betslip\DFT BETSLIP.Paths[OLE DB Source Output]"
+          TopLeft="227.5,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Betslip\DFT BETSLIP\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_Jackpot_Betslip)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Betslip\DFT BETSLIP\SOURCE (WHLFINDB01)(Vuvuzela)(Jackpot)(Betslip)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

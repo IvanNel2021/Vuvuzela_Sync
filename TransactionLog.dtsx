@@ -1,0 +1,1483 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="8/22/2019 10:40:06 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WHLDOMTS01"
+  DTS:CreatorName="WHLBASE\BiAdmin-JohanP"
+  DTS:DTSID="{72400D89-88EF-45BF-B04B-C63BB3D298C8}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.5626.31"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="TransactionlogSync"
+  DTS:PackageType="5"
+  DTS:VersionBuild="230"
+  DTS:VersionGUID="{8AA021AC-F713-46EA-B1EF-43957968DA1F}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_VuvuzelaZA_TransactionLog)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{e746307b-682e-4ebf-801a-d3dea5203049}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_VuvuzelaZA_TransactionLog)"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+          SQLTask:SqlStatementSource="EXEC [dbo].[sp_Stage_VuvuzelaZA_TransactionLog]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Vuvuzela_TransactionLog)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{c45c0d13-0241-4299-9431-a42132922be8}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Vuvuzela_TransactionLog)"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+          SQLTask:SqlStatementSource="EXEC [dbo].[sp_Stage_Vuvuzela_TransactionLog]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SYNC VUVUZELA STAGING"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{6cf6f41e-4781-4f59-a11a-02af224ec63a}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SYNC VUVUZELA STAGING"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog)"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog)"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TransactionLog]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT *
+FROM [Vuvuzela].[dbo].[TransactionLog]
+WHERE EditedDateTime &gt;= CAST(GETDATE() -1 as DATE ) 
+AND EditedDateTime &lt; CAST(GETDATE() as date)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Connections[OleDbConnection]"
+                  connectionManagerID="{11938FDE-7DA3-415F-A2AD-1C86AD68390D}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[172.27.0.79.Vuvuzela.DOSBISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionLogId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[TransactionLogId]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionLogId]"
+                      name="TransactionLogId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionTypeId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[TransactionTypeId]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionTypeId]"
+                      name="TransactionTypeId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[AccountId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[AccountId]"
+                      name="AccountId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Amount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Amount]"
+                      name="Amount"
+                      precision="14"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[CurrencyCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
+                      length="5"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[CurrencyCode]"
+                      name="CurrencyCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[InternalReferenceId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[InternalReferenceId]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[InternalReferenceId]"
+                      name="InternalReferenceId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[ExternalReference]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[ExternalReference]"
+                      length="250"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[ExternalReference]"
+                      name="ExternalReference"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                      name="EditedDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedById]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedById]"
+                      name="EditedById"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Version]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Version]"
+                      name="Version"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                      name="IsDeleted"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[TransactionLogId]"
+                      dataType="guid"
+                      name="TransactionLogId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[TransactionTypeId]"
+                      dataType="guid"
+                      name="TransactionTypeId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                      dataType="guid"
+                      name="AccountId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="14"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="CurrencyCode" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[InternalReferenceId]"
+                      dataType="guid"
+                      name="InternalReferenceId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[ExternalReference]"
+                      dataType="wstr"
+                      length="250"
+                      name="ExternalReference" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EditedDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                      dataType="guid"
+                      name="EditedById" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                      dataType="i4"
+                      name="Version" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[TransactionLogId]"
+                      dataType="guid"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[TransactionLogId]"
+                      name="TransactionLogId" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[TransactionTypeId]"
+                      dataType="guid"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[TransactionTypeId]"
+                      name="TransactionTypeId" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                      dataType="guid"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                      name="AccountId" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      dataType="numeric"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      name="Amount"
+                      precision="14"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
+                      name="CurrencyCode" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[InternalReferenceId]"
+                      dataType="guid"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[InternalReferenceId]"
+                      name="InternalReferenceId" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ExternalReference]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ExternalReference]"
+                      name="ExternalReference" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                      name="EditedDateTime" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                      dataType="guid"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                      name="EditedById" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[Version]"
+                      dataType="i4"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[Version]"
+                      name="Version" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                      name="IsDeleted" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog)"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog)"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[Vuvuzela].[Stage_TransactionLog]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">CHECK_CONSTRAINTS,ROWS_PER_BATCH = 1000000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Connections[OleDbConnection]"
+                  connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[TransactionLogId]"
+                      cachedDataType="guid"
+                      cachedName="TransactionLogId"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[TransactionLogId]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionLogId]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[TransactionTypeId]"
+                      cachedDataType="guid"
+                      cachedName="TransactionTypeId"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[TransactionTypeId]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionTypeId]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[AccountId]"
+                      cachedDataType="guid"
+                      cachedName="AccountId"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[AccountId]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[Amount]"
+                      cachedDataType="numeric"
+                      cachedName="Amount"
+                      cachedPrecision="14"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Amount]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[CurrencyCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="CurrencyCode"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[InternalReferenceId]"
+                      cachedDataType="guid"
+                      cachedName="InternalReferenceId"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[InternalReferenceId]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[InternalReferenceId]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[ExternalReference]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="ExternalReference"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[ExternalReference]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[ExternalReference]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[EditedDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EditedDateTime"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedDateTime]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[EditedById]"
+                      cachedDataType="guid"
+                      cachedName="EditedById"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedById]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[Version]"
+                      cachedDataType="i4"
+                      cachedName="Version"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Version]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[IsDeleted]"
+                      cachedDataType="bool"
+                      cachedName="IsDeleted"
+                      externalMetadataColumnId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                      lineageId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[IsDeleted]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[TransactionLogId]"
+                      dataType="guid"
+                      name="TransactionLogId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[TransactionTypeId]"
+                      dataType="guid"
+                      name="TransactionTypeId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                      dataType="guid"
+                      name="AccountId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="14"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="CurrencyCode" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[InternalReferenceId]"
+                      dataType="guid"
+                      name="InternalReferenceId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[ExternalReference]"
+                      dataType="wstr"
+                      length="250"
+                      name="ExternalReference" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EditedDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                      dataType="guid"
+                      name="EditedById" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                      dataType="i4"
+                      name="Version" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\SYNC VUVUZELA STAGING.Paths[OLE DB Source Output]"
+              endId="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog).Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog).Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SYNC VUVUZELAZA STAGING"
+      DTS:CreationName="Microsoft.Pipeline"
+      DTS:Description="Data Flow Task"
+      DTS:DTSID="{44de0d1d-12a6-4cf1-9659-215fb4d17311}"
+      DTS:ExecutableType="Microsoft.Pipeline"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SYNC VUVUZELAZA STAGING"
+      DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <pipeline
+          version="1">
+          <components>
+            <component
+              refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog)"
+              componentClassID="Microsoft.OLEDBSource"
+              contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+              description="OLE DB Source"
+              name="SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog)"
+              usesDispositions="true"
+              version="7">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[dbo].[TransactionLog]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT *
+FROM [VuvuzelaZA].[dbo].[TransactionLog]
+WHERE EditedDateTime &gt;= CAST(GETDATE() -1 as DATE ) 
+AND EditedDateTime &lt; CAST(GETDATE() as date)</property>
+                <property
+                  dataType="System.String"
+                  description="The variable that contains the SQL command to be executed."
+                  name="SqlCommandVariable"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">2</property>
+                <property
+                  dataType="System.String"
+                  description="The mappings between the parameters in the SQL command and variables."
+                  name="ParameterMapping"></property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Connections[OleDbConnection]"
+                  connectionManagerID="{A23B11D0-AE7D-4789-9FCF-EB0A77B9504C}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[172.27.0.79.VuvuzelaZA.DOSBISUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <outputs>
+                <output
+                  refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output]"
+                  name="OLE DB Source Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionLogId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[TransactionLogId]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionLogId]"
+                      name="TransactionLogId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionTypeId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[TransactionTypeId]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionTypeId]"
+                      name="TransactionTypeId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[AccountId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[AccountId]"
+                      name="AccountId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Amount]"
+                      dataType="numeric"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Amount]"
+                      name="Amount"
+                      precision="14"
+                      scale="4"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[CurrencyCode]"
+                      codePage="1252"
+                      dataType="str"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
+                      length="5"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[CurrencyCode]"
+                      name="CurrencyCode"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[InternalReferenceId]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[InternalReferenceId]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[InternalReferenceId]"
+                      name="InternalReferenceId"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[ExternalReference]"
+                      dataType="wstr"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[ExternalReference]"
+                      length="250"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[ExternalReference]"
+                      name="ExternalReference"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                      dataType="dbTimeStamp"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                      name="EditedDateTime"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedById]"
+                      dataType="guid"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedById]"
+                      name="EditedById"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Version]"
+                      dataType="i4"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Version]"
+                      name="Version"
+                      truncationRowDisposition="FailComponent" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      errorOrTruncationOperation="Conversion"
+                      errorRowDisposition="FailComponent"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                      name="IsDeleted"
+                      truncationRowDisposition="FailComponent" />
+                  </outputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[TransactionLogId]"
+                      dataType="guid"
+                      name="TransactionLogId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[TransactionTypeId]"
+                      dataType="guid"
+                      name="TransactionTypeId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                      dataType="guid"
+                      name="AccountId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="14"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[CurrencyCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="CurrencyCode" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[InternalReferenceId]"
+                      dataType="guid"
+                      name="InternalReferenceId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[ExternalReference]"
+                      dataType="wstr"
+                      length="250"
+                      name="ExternalReference" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EditedDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                      dataType="guid"
+                      name="EditedById" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                      dataType="i4"
+                      name="Version" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                  </externalMetadataColumns>
+                </output>
+                <output
+                  refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output]"
+                  isErrorOut="true"
+                  name="OLE DB Source Error Output">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[TransactionLogId]"
+                      dataType="guid"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[TransactionLogId]"
+                      name="TransactionLogId" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[TransactionTypeId]"
+                      dataType="guid"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[TransactionTypeId]"
+                      name="TransactionTypeId" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                      dataType="guid"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                      name="AccountId" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      dataType="numeric"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[Amount]"
+                      name="Amount"
+                      precision="14"
+                      scale="4" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[CurrencyCode]"
+                      name="CurrencyCode" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[InternalReferenceId]"
+                      dataType="guid"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[InternalReferenceId]"
+                      name="InternalReferenceId" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ExternalReference]"
+                      dataType="wstr"
+                      length="250"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ExternalReference]"
+                      name="ExternalReference" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                      dataType="dbTimeStamp"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                      name="EditedDateTime" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                      dataType="guid"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                      name="EditedById" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[Version]"
+                      dataType="i4"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[Version]"
+                      name="Version" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                      dataType="bool"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                      name="IsDeleted" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+            <component
+              refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog)"
+              componentClassID="Microsoft.OLEDBDestination"
+              contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+              description="OLE DB Destination"
+              name="TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog)"
+              usesDispositions="true"
+              version="4">
+              <properties>
+                <property
+                  dataType="System.Int32"
+                  description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                  name="CommandTimeout">0</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the name of the database object used to open a rowset."
+                  name="OpenRowset">[VuvuZelaZA].[Stage_TransactionLog]</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies the variable that contains the name of the database object used to open a rowset."
+                  name="OpenRowsetVariable"></property>
+                <property
+                  dataType="System.String"
+                  description="The SQL command to be executed."
+                  name="SqlCommand"
+                  UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the column code page to use when code page information is unavailable from the data source."
+                  name="DefaultCodePage">1252</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Forces the use of the DefaultCodePage property value when describing character data."
+                  name="AlwaysUseDefaultCodePage">false</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies the mode used to access the database."
+                  name="AccessMode"
+                  typeConverter="AccessMode">3</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepIdentity">false</property>
+                <property
+                  dataType="System.Boolean"
+                  description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                  name="FastLoadKeepNulls">false</property>
+                <property
+                  dataType="System.String"
+                  description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                  name="FastLoadOptions">CHECK_CONSTRAINTS,ROWS_PER_BATCH = 1000000</property>
+                <property
+                  dataType="System.Int32"
+                  description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                  name="FastLoadMaxInsertCommitSize">2147483647</property>
+              </properties>
+              <connections>
+                <connection
+                  refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Connections[OleDbConnection]"
+                  connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                  connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                  description="The OLE DB runtime connection used to access the database."
+                  name="OleDbConnection" />
+              </connections>
+              <inputs>
+                <input
+                  refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input]"
+                  errorOrTruncationOperation="Insert"
+                  errorRowDisposition="FailComponent"
+                  hasSideEffects="true"
+                  name="OLE DB Destination Input">
+                  <inputColumns>
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[TransactionLogId]"
+                      cachedDataType="guid"
+                      cachedName="TransactionLogId"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[TransactionLogId]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionLogId]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[TransactionTypeId]"
+                      cachedDataType="guid"
+                      cachedName="TransactionTypeId"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[TransactionTypeId]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[TransactionTypeId]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[AccountId]"
+                      cachedDataType="guid"
+                      cachedName="AccountId"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[AccountId]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[Amount]"
+                      cachedDataType="numeric"
+                      cachedName="Amount"
+                      cachedPrecision="14"
+                      cachedScale="4"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Amount]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[CurrencyCode]"
+                      cachedCodepage="1252"
+                      cachedDataType="str"
+                      cachedLength="5"
+                      cachedName="CurrencyCode"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[CurrencyCode]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[InternalReferenceId]"
+                      cachedDataType="guid"
+                      cachedName="InternalReferenceId"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[InternalReferenceId]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[InternalReferenceId]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[ExternalReference]"
+                      cachedDataType="wstr"
+                      cachedLength="250"
+                      cachedName="ExternalReference"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[ExternalReference]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[ExternalReference]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[EditedDateTime]"
+                      cachedDataType="dbTimeStamp"
+                      cachedName="EditedDateTime"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedDateTime]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[EditedById]"
+                      cachedDataType="guid"
+                      cachedName="EditedById"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[EditedById]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[Version]"
+                      cachedDataType="i4"
+                      cachedName="Version"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[Version]" />
+                    <inputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].Columns[IsDeleted]"
+                      cachedDataType="bool"
+                      cachedName="IsDeleted"
+                      externalMetadataColumnId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output].Columns[IsDeleted]" />
+                  </inputColumns>
+                  <externalMetadataColumns
+                    isUsed="True">
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[TransactionLogId]"
+                      dataType="guid"
+                      name="TransactionLogId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[TransactionTypeId]"
+                      dataType="guid"
+                      name="TransactionTypeId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                      dataType="guid"
+                      name="AccountId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                      dataType="numeric"
+                      name="Amount"
+                      precision="14"
+                      scale="4" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[CurrencyCode]"
+                      codePage="1252"
+                      dataType="str"
+                      length="5"
+                      name="CurrencyCode" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[InternalReferenceId]"
+                      dataType="guid"
+                      name="InternalReferenceId" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[ExternalReference]"
+                      dataType="wstr"
+                      length="250"
+                      name="ExternalReference" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                      dataType="dbTimeStamp"
+                      name="EditedDateTime" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                      dataType="guid"
+                      name="EditedById" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                      dataType="i4"
+                      name="Version" />
+                    <externalMetadataColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                      dataType="bool"
+                      name="IsDeleted" />
+                  </externalMetadataColumns>
+                </input>
+              </inputs>
+              <outputs>
+                <output
+                  refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Outputs[OLE DB Destination Error Output]"
+                  exclusionGroup="1"
+                  isErrorOut="true"
+                  name="OLE DB Destination Error Output"
+                  synchronousInputId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input]">
+                  <outputColumns>
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      dataType="i4"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                      name="ErrorCode"
+                      specialFlags="1" />
+                    <outputColumn
+                      refId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      dataType="i4"
+                      lineageId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                      name="ErrorColumn"
+                      specialFlags="2" />
+                  </outputColumns>
+                  <externalMetadataColumns />
+                </output>
+              </outputs>
+            </component>
+          </components>
+          <paths>
+            <path
+              refId="Package\SYNC VUVUZELAZA STAGING.Paths[OLE DB Source Output]"
+              endId="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog).Inputs[OLE DB Destination Input]"
+              name="OLE DB Source Output"
+              startId="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog).Outputs[OLE DB Source Output]" />
+          </paths>
+        </pipeline>
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE (dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{fc6cbb39-0f4b-4580-90fe-65fcef2885c9}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE (dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog)"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="1">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE [Vuvuzela].[Stage_TransactionLog]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TRUNCATE (dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog)"
+      DTS:CreationName="Microsoft.ExecuteSQLTask"
+      DTS:Description="Execute SQL Task"
+      DTS:DTSID="{847defe9-c605-474b-922e-cd7b7f8a9f31}"
+      DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TRUNCATE (dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog)"
+      DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+      DTS:ThreadHint="0">
+      <DTS:Variables />
+      <DTS:ObjectData>
+        <SQLTask:SqlTaskData
+          SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+          SQLTask:SqlStatementSource="TRUNCATE TABLE dbFinanceStaging.[VuvuZelaZA].[Stage_TransactionLog]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+      </DTS:ObjectData>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint1]"
+      DTS:CreationName=""
+      DTS:DTSID="{102d67ed-9149-49bc-856a-b9ccc2e42140}"
+      DTS:From="Package\TRUNCATE (dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SYNC VUVUZELAZA STAGING" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{7c19afd3-b326-46eb-b13a-6e6ce63b369e}"
+      DTS:From="Package\TRUNCATE (dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog)"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SYNC VUVUZELA STAGING" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 11]"
+      DTS:CreationName=""
+      DTS:DTSID="{012608af-98f7-4639-905b-8b7299884b47}"
+      DTS:From="Package\SYNC VUVUZELAZA STAGING"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_VuvuzelaZA_TransactionLog)" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{f7ca2181-9a2e-4250-84ea-773d8a8a47d4}"
+      DTS:From="Package\SYNC VUVUZELA STAGING"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Vuvuzela_TransactionLog)" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="469.333333333334,42.6666666666667"
+          Id="Package\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_Vuvuzela_TransactionLog)"
+          TopLeft="5.49999999999997,210.833333333334" />
+        <NodeLayout
+          Size="481.333333333334,42.6666666666667"
+          Id="Package\EXEC (CPTFINDB01)(dbFinanceStaging)(dbo)(sp_Stage_VuvuzelaZA_TransactionLog)"
+          TopLeft="535.5,210.833333333333" />
+        <NodeLayout
+          Size="206.666666666667,42.6666666666667"
+          Id="Package\SYNC VUVUZELA STAGING"
+          TopLeft="136.833333333333,108.166666666667" />
+        <NodeLayout
+          Size="218.666666666667,42.6666666666667"
+          Id="Package\SYNC VUVUZELAZA STAGING"
+          TopLeft="666.833333333333,108.166666666667" />
+        <NodeLayout
+          Size="388,42.6666666666667"
+          Id="Package\TRUNCATE (dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog)"
+          TopLeft="46.1666666666666,5.50000000000004" />
+        <NodeLayout
+          Size="401.333333333334,42.6666666666667"
+          Id="Package\TRUNCATE (dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog)"
+          TopLeft="575.5,5.49999999999993" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="240.166666666667,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint1]"
+          TopLeft="776.166666666667,48.1666666666666">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="240.166666666667,150.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 11]"
+          TopLeft="776.166666666667,150.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SYNC VUVUZELA STAGING">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="350.666666666667,42.6666666666667"
+          Id="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog)"
+          TopLeft="52.1666666666667,5.50000000000004" />
+        <NodeLayout
+          Size="444,42.6666666666667"
+          Id="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog)"
+          TopLeft="5.50000000000003,108.166666666667" />
+        <EdgeLayout
+          Id="Package\SYNC VUVUZELA STAGING.Paths[OLE DB Source Output]"
+          TopLeft="227.5,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SYNC VUVUZELA STAGING\SOURCE (WHLFINDB01)(Vuvuzela)(dbo)(TransactionLog)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SYNC VUVUZELA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(Vuvuzela)(Stage_TransactionLog)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\SYNC VUVUZELAZA STAGING">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="362.666666666667,42.6666666666667"
+          Id="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog)"
+          TopLeft="52.1666666666667,5.50000000000004" />
+        <NodeLayout
+          Size="456,42.6666666666667"
+          Id="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog)"
+          TopLeft="5.50000000000003,108.166666666667" />
+        <EdgeLayout
+          Id="Package\SYNC VUVUZELAZA STAGING.Paths[OLE DB Source Output]"
+          TopLeft="233.5,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SYNC VUVUZELAZA STAGING\SOURCE (WHLFINDB01)(VuvuzelaZA)(dbo)(TransactionLog)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SYNC VUVUZELAZA STAGING\TARGET (CPTFINDB01)(dbFinanceStaging)(VuvuzelaZA)(Stage_TransactionLog)">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

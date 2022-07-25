@@ -1,0 +1,1476 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/6/2020 3:17:42 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WHLDOMTS01"
+  DTS:CreatorName="WHLBASE\biadmin-jan.engelbre"
+  DTS:DTSID="{A75EAD40-FCE7-42DE-82F6-09959E3D5F8A}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.5626.31"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Audit"
+  DTS:PackageType="5"
+  DTS:VersionBuild="72"
+  DTS:VersionGUID="{7EE859C4-55E0-4465-9E5F-F4D0713080A3}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{A8B0FF97-C772-40D3-9C3F-77EDF3C660F5}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="LastMaxPlayerID">
+      <DTS:VariableValue
+        DTS:DataType="8"
+        xml:space="preserve"></DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\SA TAX REPORT"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{5AE67535-8273-4DB3-AEC3-D6EBC482DF3A}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SA TAX REPORT">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SA TAX REPORT\Data Flow Task"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{E74C182E-7514-4E12-A160-95B5EB4EDD77}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Data Flow Task"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Stage_Report_TaxSummary_BetwaySouthAfrica]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Date]"
+                          cachedDataType="dbDate"
+                          cachedName="Date"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Date]" />
+                        <inputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Number]"
+                          cachedDataType="i4"
+                          cachedName="Number"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Number]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Number]" />
+                        <inputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Stake]"
+                          cachedDataType="numeric"
+                          cachedName="Stake"
+                          cachedPrecision="38"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Stake]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Stake]" />
+                        <inputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[WinningStake]"
+                          cachedDataType="numeric"
+                          cachedName="WinningStake"
+                          cachedPrecision="38"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WinningStake]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[WinningStake]" />
+                        <inputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Payout]"
+                          cachedDataType="numeric"
+                          cachedName="Payout"
+                          cachedPrecision="38"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Payout]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Payout]" />
+                        <inputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GGR]"
+                          cachedDataType="numeric"
+                          cachedName="GGR"
+                          cachedPrecision="38"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GGR]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[GGR]" />
+                        <inputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Tax Amount]"
+                          cachedDataType="numeric"
+                          cachedName="Tax Amount"
+                          cachedPrecision="38"
+                          cachedScale="6"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tax Amount]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Tax Amount]" />
+                        <inputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[VAT]"
+                          cachedDataType="numeric"
+                          cachedName="VAT"
+                          cachedPrecision="38"
+                          cachedScale="6"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VAT]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[VAT]" />
+                        <inputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[GameType]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="12"
+                          cachedName="GameType"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GameType]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[GameType]" />
+                        <inputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[ResultingStatus]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="ResultingStatus"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ResultingStatus]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ResultingStatus]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Date]"
+                          dataType="dbDate"
+                          name="Date" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Number]"
+                          dataType="i4"
+                          name="Number" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Stake]"
+                          dataType="numeric"
+                          name="Stake"
+                          precision="38"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[WinningStake]"
+                          dataType="numeric"
+                          name="WinningStake"
+                          precision="38"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Payout]"
+                          dataType="numeric"
+                          name="Payout"
+                          precision="38"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GGR]"
+                          dataType="numeric"
+                          name="GGR"
+                          precision="38"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Tax Amount]"
+                          dataType="numeric"
+                          name="Tax Amount"
+                          precision="38"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[VAT]"
+                          dataType="numeric"
+                          name="VAT"
+                          precision="38"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[GameType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="12"
+                          name="GameType" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[ResultingStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ResultingStatus" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE DB Source"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">EXEC ('
+
+  DECLARE @StartDate DATE,
+            @EndDate DATE,
+            @LastArcEntry DATETIME,
+            @VATPerc DECIMAL(5, 3),
+            @vLogText VARCHAR(MAX);
+
+    SET @StartDate = GETDATE() - 7
+    SET @EndDate = GETDATE();
+	
+  
+	CREATE TABLE #Merge
+    (
+        [Date] [DATE] NULL,
+        [Number] [INT] NULL,
+        [Stake] [DECIMAL](38, 4) NULL,
+        [WinningStake] [DECIMAL](38, 4) NULL,
+        [Payout] [DECIMAL](38, 4) NULL,
+        [GGR] [DECIMAL](38, 4) NULL,
+        [Tax Amount] [NUMERIC](38, 6) NULL,
+        [VAT] [NUMERIC](38, 6) NULL,
+        [GameType] [VARCHAR](12) NOT NULL,
+        [ResultingStatus] [VARCHAR](50) NULL
+    );
+
+
+	CREATE TABLE [#Wagers]
+    (
+        [BetslipId] UNIQUEIDENTIFIER NOT NULL,
+        [Date] [DATETIME] NULL,
+        [Amount] [DECIMAL](38, 4) NULL,
+        [TransactionTypeCategory] [VARCHAR](50) NULL,
+        [SettlementStatus] [VARCHAR](50) NULL,
+        [NoOfBets] INT NULL,
+        [TransactionType] [VARCHAR](50) NULL
+    );
+
+
+    CREATE TABLE [#PayoutWagers]
+    (
+        [BetslipId] [VARCHAR](50) NOT NULL,
+        [Date] [DATETIME] NULL,
+        [Amount] [DECIMAL](38, 4) NULL,
+        [TransactionType] [VARCHAR](50) NULL,
+        [TransactionTypeCategory] [VARCHAR](50) NULL
+    );
+
+    CREATE TABLE [#SportsWager]
+    (
+        [BetslipId] [VARCHAR](50) NOT NULL,
+        [Date] [DATETIME] NULL,
+        [Amount] [DECIMAL](38, 4) NULL,
+        [TransactionType] [VARCHAR](50) NULL,
+        [TransactionTypeCategory] [VARCHAR](50) NULL,
+        [SettlementStatus] [VARCHAR](50) NULL,
+        [NoOfBets] INT NULL
+    );
+    CREATE TABLE [#ALLWagers]
+    (
+        [BetslipId] [VARCHAR](50) NOT NULL,
+        [Date] [DATETIME] NULL,
+        [Amount] [DECIMAL](38, 4) NULL,
+        [TransactionType] [VARCHAR](50) NULL,
+        [TransactionTypeCategory] [VARCHAR](50) NULL,
+        [SettlementStatus] [VARCHAR](50) NULL,
+        [NoOfBets] INT NULL,
+        [ResultingStatus] [VARCHAR](50) NULL
+    );
+
+    CREATE TABLE [#Payout]
+    (
+        [InternalReferenceId] [VARCHAR](50) NOT NULL,
+        [Amount] [DECIMAL](38, 4) NULL,
+        [Date] [DATETIME] NULL
+    );
+    CREATE TABLE [#WinningStake]
+    (
+        [WinningStake] [DECIMAL](38, 4) NULL,
+        [Date] [DATETIME] NULL,
+        [TransactionTypeCategory] [VARCHAR](50) NULL,
+        [BetslipId] [VARCHAR](50) NOT NULL,
+    );
+
+    CREATE TABLE [#TempTaxValues]
+    (
+        [BetslipId] [VARCHAR](50) NOT NULL,
+        [DateTimeStamp] [DATETIME] NULL,
+        [Number] [INT] NULL,
+        [Stake] [DECIMAL](38, 4) NULL,
+        [WinningStake] [DECIMAL](38, 4) NULL,
+        [Payout] [DECIMAL](38, 4) NULL,
+        [GGR] [DECIMAL](38, 4) NULL,
+        [Tax Amount] [NUMERIC](38, 6) NULL,
+        [VAT] [NUMERIC](38, 6) NULL,
+        [GameType] [VARCHAR](12) NOT NULL,
+        [Date] [DATETIME] NULL,
+        [ResultingStatus] [VARCHAR](50) NULL
+    );
+
+
+
+    SET @VATPerc = CASE
+                       WHEN @StartDate &lt; ''01-Apr-2018'' THEN
+                           14.00
+                       ELSE
+                           15.00
+                   END;
+
+
+
+    ----------------------------------------------------------
+    -- #Wagers
+    ----------------------------------------------------------
+    INSERT INTO [#Wagers]
+    (
+        [BetslipId],
+        [Date],
+        [Amount],
+        [TransactionTypeCategory],
+        [SettlementStatus],
+        [NoOfBets],
+        [TransactionType]
+    )
+    SELECT [SettledWagers].[BetslipId],
+           [SettledWagers].[Date],
+           [SettledWagers].[Amount],
+           [SettledWagers].[TransactionTypeCategory],
+           [SettledWagers].[SettlementStatus],
+           [SettledWagers].[NoOfBets],
+           [SettledWagers].[TransactionType]
+    FROM
+    (
+        --Current Betslip, Current Tlog
+        SELECT [a].[BetslipId],
+               ISNULL([a].[InitialSettlementDateTime], [a].[SettlementDateTime]) AS [Date],
+               [a].[WageredAmount] AS [Amount],
+               ''Settled Wagers'' AS [TransactionTypeCategory],
+               [e].[Description] AS [SettlementStatus],
+               [a].[NoOfBets],
+               [tt].[Description] AS [TransactionType]
+        FROM [VuvuzelaZA].[dbo].[Betslip] AS [a] (NOLOCK)
+            JOIN [VuvuzelaZA].[dbo].[TransactionLog] AS [tl] (NOLOCK)
+                ON [tl].[InternalReferenceId] = [a].[BetslipId]
+                   AND [tl].[TransactionTypeId] IN ( ''00000000-0000-0000-DA7A-000000600001'',
+                                                     ''00000000-0000-0000-DA7A-000000600002''
+                                                   )
+            JOIN [VuvuzelaZA].[dbo].[TransactionType] AS [tt]
+                ON [tt].[TransactionTypeId] = [tl].[TransactionTypeId]
+            JOIN [VuvuzelaZA].[dbo].[SettlementStatus] AS [e] (NOLOCK)
+                ON [a].[SettlementStatus] = [e].[SettlementStatusId]
+                   AND [e].[Entity] = ''Betslip''
+                   AND [e].[SettlementStatusId] IN ( 3, 5, 9 )
+        WHERE [a].[IsDeleted] = 0
+              AND ISNULL(a.[InitialSettlementDateTime], a.[SettlementDateTime])
+              BETWEEN @StartDate AND @EndDate
+     
+    ) AS [SettledWagers];
+
+
+    ----------------------------------------------------------
+    -- PayoutWagers
+    ----------------------------------------------------------
+	SELECT @LastArcEntry = MAX([tl].[EditedDateTime])
+    FROM [VuvuzelaZA].[Archive].[TransactionLog] AS [tl] (NOLOCK);
+
+	INSERT INTO [#PayoutWagers]
+    (
+        [BetslipId],
+        [Date],
+        [Amount],
+        [TransactionType],
+        [TransactionTypeCategory]
+    )
+
+   SELECT IIF(TransactionType LIKE ''Live%'' OR TransactionType LIKE ''Casino%'',
+               ''00000000-0000-0000-0000-''
+               + RIGHT(''000000000000''
+                       + CONVERT(
+                                    VARCHAR,
+                                    ROW_NUMBER() OVER (PARTITION BY d.InternalReferenceId ORDER BY d.InternalReferenceId)
+                                ), 12),
+               InternalReferenceId) AS BetslipId,
+           [d].[Date],
+           [d].[Amount],
+           [d].[Transactiontype],
+           [d].[TransactiontypeCategory]
+    FROM
+    (
+        SELECT [a].[InternalReferenceId],
+               CASE
+                   WHEN [a].[TransactionTypeId] IN ( ''00000000-0000-0000-DA7A-000000600032'',
+                                                     ''00000000-0000-0000-DA7A-000000600033'',
+                                                     ''00000000-0000-0000-DA7A-000000600047'',
+                                                     ''00000000-0000-0000-DA7A-000000600049'',
+                                                     ''00000000-0000-0000-DA7A-000000600079''
+                                                   ) THEN
+                       DATEADD(hh, -2, [a].[EditedDateTime])
+                   ELSE
+                       [a].[EditedDateTime] --&gt; All Other data GMT+2 colossus date shift
+               END AS [Date],
+               [a].[Amount] AS [Amount],
+               [b].[Description] AS [Transactiontype],
+               [c].[Description] AS [TransactiontypeCategory]
+        FROM [VuvuzelaZA].[dbo].[TransactionLog] AS [a] (NOLOCK)
+            INNER JOIN [VuvuzelaZA].[dbo].[TransactionType] AS [b] (NOLOCK)
+                ON [a].[TransactionTypeId] = [b].[TransactionTypeId]
+            INNER JOIN [VuvuzelaZA].[dbo].[TransactionTypeCategory] AS [c] (NOLOCK)
+                ON [b].[TransactionTypeCategoryId] = [c].[TransactionTypeCategoryId]
+        WHERE [a].[EditedDateTime]
+              BETWEEN @StartDate AND @EndDate
+              AND [a].[IsDeleted] = 0
+              AND b.TransactionTypeCategoryId IN ( ''00000000-0000-0000-DA7A-000000500001'',
+                                                   ''00000000-0000-0000-DA7A-000000500002''
+                                                 )
+              AND b.BalanceIndexAffected = 0
+			  		and NOT EXISTS (SELECT TOP 1 1 FROM VuvuzelaZA.synapse.betslip	  SB WHERE 	a.InternalReferenceId = Sb.InternalReference) --Remove horse racing
+        --Winboost
+        UNION ALL
+        SELECT [a].[InternalReferenceId],
+               CASE
+                   WHEN [a].[TransactionTypeId] IN ( ''00000000-0000-0000-DA7A-000000600032'',
+                                                     ''00000000-0000-0000-DA7A-000000600033'',
+                                                     ''00000000-0000-0000-DA7A-000000600047'',
+                                                     ''00000000-0000-0000-DA7A-000000600049'',
+                                                     ''00000000-0000-0000-DA7A-000000600079''
+                                                   ) THEN
+                       DATEADD(hh, -2, [a].[EditedDateTime])
+                   ELSE
+                       [a].[EditedDateTime] --&gt; All Other data GMT+2
+               END AS [Date],
+               [a].[Amount] AS [Amount],
+               [b].[Description] AS [Transactiontype],
+               [c].[Description] AS [TransactiontypeCategory]
+        FROM [VuvuzelaZA].[dbo].[TransactionLog] AS [a] (NOLOCK)
+            INNER JOIN [VuvuzelaZA].[dbo].[TransactionType] AS [b] (NOLOCK)
+                ON [a].[TransactionTypeId] = [b].[TransactionTypeId]
+            INNER JOIN [VuvuzelaZA].[dbo].[TransactionTypeCategory] AS [c] (NOLOCK)
+                ON [b].[TransactionTypeCategoryId] = [c].[TransactionTypeCategoryId]
+        WHERE [a].[EditedDateTime]
+              BETWEEN @StartDate AND @EndDate
+              AND [a].[IsDeleted] = 0
+              AND [a].TransactionTypeId = ''00000000-0000-0000-DA7A-000000600077''
+              AND [a].[EditedDateTime] &gt;= ''2020-10-26''
+              AND b.BalanceIndexAffected = 0
+			  		and NOT EXISTS (SELECT TOP 1 1 FROM VuvuzelaZA.synapse.betslip	  SB WHERE 	a.InternalReferenceId = Sb.InternalReference) --Remove horse racing
+      
+    ) AS [d];
+
+
+
+
+    CREATE NONCLUSTERED INDEX [nci_PatoutWagers]
+    ON [#PayoutWagers] (
+                           [BetslipId] ASC,
+                           [Date] ASC,
+                           [Amount] ASC,
+                           [TransactionType] ASC,
+                           [TransactionTypeCategory] ASC
+                       );
+
+
+    INSERT INTO [#SportsWager]
+    (
+        [BetslipId],
+        [Date],
+        [Amount],
+        [TransactionType],
+        [TransactionTypeCategory],
+        [SettlementStatus],
+        [NoOfBets]
+    )
+    SELECT [BetslipId],
+           MIN([Date]) AS [Date],
+           SUM([Amount]) AS [Amount],
+           [TransactionType],
+           [TransactionTypeCategory],
+           [SettlementStatus],
+           MIN([NoOfBets]) AS [NoOfBets]
+    FROM [#Wagers]
+    GROUP BY [BetslipId],
+             [TransactionType],
+             [TransactionTypeCategory],
+             [SettlementStatus];
+
+    --betgames lucky
+    CREATE TABLE [#LuckyBetgameWager]
+    (
+        [BetslipId] [VARCHAR](50) NOT NULL,
+        [Date] [DATETIME] NULL,
+        [Amount] [DECIMAL](38, 4) NULL,
+        [TransactionType] [VARCHAR](50) NULL,
+        [TransactionTypeCategory] [VARCHAR](50) NULL,
+        [NoOfBets] INT NULL
+    );
+
+    INSERT INTO [#LuckyBetgameWager]
+    (
+        [BetslipId],
+        [Date],
+        [Amount],
+        [TransactionType],
+        [TransactionTypeCategory],
+        [NoOfBets]
+    )
+    SELECT [BetslipId],
+           MIN([Date]) AS [Date],
+           SUM(-[Amount]) AS [Amount],
+           [TransactionType],
+           [TransactionTypeCategory],
+           1 AS [NoOfBets]
+    FROM [#PayoutWagers]
+    WHERE [TransactionTypeCategory] = ''Wager''
+          AND [TransactionType] IN ( ''BetGames Bet Wager'', ''BetGames Wager Reversal'', ''Lucky Numbers Wager'',
+                                     ''Lucky Numbers Wager Reversal'', ''Live Games Wager'', ''Live Games Wager Refund'',
+									 ''Casino Games Wager'', ''Casino Games Wager Refund'',
+                                      ''Virtual Wager'', ''Virtual Wager Reversal'' 
+                                   )
+    GROUP BY [BetslipId],
+             [TransactionType],
+             [TransactionTypeCategory];
+
+
+
+    INSERT INTO [#ALLWagers]
+    (
+        [BetslipId],
+        [Date],
+        [Amount],
+        [TransactionType],
+        [TransactionTypeCategory],
+        [SettlementStatus],
+        [NoOfBets],
+        [ResultingStatus]
+    )
+    SELECT [sw].[BetslipId],
+           [Date],
+           [Amount],
+           [TransactionType],
+           [TransactionTypeCategory],
+           [sw].[SettlementStatus],
+           [sw].[NoOfBets],
+           NULL AS [ResultingStatus]
+    FROM [#SportsWager] AS [sw]
+    UNION ALL
+    SELECT [lbg].[BetslipId],
+           [Date],
+           [Amount],
+           [TransactionType],
+           [TransactionTypeCategory],
+           [TransactionTypeCategory],
+           1 AS [NoOfBets],
+           ISNULL([betstat].[BetStatusDescription], [stat].[Status]) AS [ResultingStatus]
+    FROM [#LuckyBetgameWager] AS [lbg]
+        LEFT JOIN [VuvuzelaZA].[BetGames].[BetGamesBet] AS [bg]
+            ON [lbg].[BetslipId] = [bg].[BetGamesBetId]
+        LEFT JOIN [VuvuzelaZA].[Bitville].[Betslip] AS [bs]
+            ON [bs].[BetslipId] = [lbg].[BetslipId]
+        LEFT JOIN [VuvuzelaZA].[Bitville].[Status] AS [stat]
+            ON [stat].[StatusCode] = [bs].[StatusCode]
+        LEFT JOIN [VuvuzelaZA].[BetGames].[BetStatus] AS [betstat]
+            ON [betstat].[BetStatusCode] = [bg].[BetStatusCode];
+
+
+
+
+
+    CREATE NONCLUSTERED INDEX [nci_ALLWagers]
+    ON [#ALLWagers] (
+                        [BetslipId] ASC,
+                        [Date] ASC,
+                        [Amount] ASC,
+                        [TransactionType] ASC,
+                        [TransactionTypeCategory] ASC,
+                        [SettlementStatus] ASC,
+                        [NoOfBets] ASC
+                    )
+    INCLUDE ([ResultingStatus]);
+
+
+
+    INSERT INTO [#Payout]
+    (
+        [InternalReferenceId],
+        [Amount],
+        [Date]
+    )
+   SELECT [BetslipId],
+
+           SUM(-[Amount]) AS [Amount],
+		              cast([Date]AS DATE) AS [Date]						
+
+    FROM [#PayoutWagers]
+    WHERE [TransactionTypeCategory] = ''Payout''
+	AND [BetslipId] != ''00000000-0000-0000-0000-000000000000''
+    GROUP BY [BetslipId],cast([Date]AS DATE)
+
+;
+
+
+    CREATE NONCLUSTERED INDEX [nci_Payout]
+    ON [#Payout] (
+                     [InternalReferenceId] ASC,
+                     [Amount] ASC,
+                     [Date] ASC
+                 );
+
+
+    INSERT INTO [#WinningStake]
+    (
+        [WinningStake],
+        [Date],
+        [TransactionTypeCategory],
+        [BetslipId]
+    )
+    SELECT SUM(-[Payout].[Amount]) AS [WinningStake],
+           [Payout].[Date],
+           [Payout].[TransactionTypeCategory],
+           [Payout].[BetslipId]
+    FROM
+    (
+        SELECT SUM(ISNULL([TL].[Amount], 0)) AS [Amount],
+               [P].[Date],
+               [tt].[Description] AS [TransactionTypeCategory],
+               [P].[InternalReferenceId] AS [BetslipId]
+        FROM [#Payout] AS [P]
+            JOIN [VuvuzelaZA].[dbo].[TransactionLog] AS [TL] (NOLOCK)
+                ON [TL].[InternalReferenceId] = [P].[InternalReferenceId]
+            JOIN [VuvuzelaZA].[dbo].[TransactionType] AS [tt]
+                ON [tt].[TransactionTypeId] = [TL].[TransactionTypeId]
+            JOIN [VuvuzelaZA].[dbo].[TransactionTypeCategory] AS [ttc]
+                ON [ttc].[TransactionTypeCategoryId] = [tt].[TransactionTypeCategoryId]
+        WHERE tt.TransactionTypeCategoryId = ''00000000-0000-0000-DA7A-000000500001''
+              AND tt.BalanceIndexAffected = 0
+		and NOT EXISTS (SELECT TOP 1 1 FROM VuvuzelaZA.synapse.betslip	  SB WHERE 	tl.InternalReferenceId = Sb.InternalReference) --Remove horse racing
+        GROUP BY [P].[Date],
+                 [tt].[Description],
+                 [P].[InternalReferenceId]
+
+    ) AS [Payout]
+    GROUP BY [Payout].[Date],
+             [Payout].[TransactionTypeCategory],
+             [Payout].[BetslipId];
+
+
+
+
+
+    CREATE NONCLUSTERED INDEX [nci_WinningStake]
+    ON [#WinningStake] (
+                           [BetslipId] ASC,
+                           [WinningStake] ASC,
+                           [Date] ASC,
+                           [TransactionTypeCategory] ASC
+                       );
+
+
+    INSERT INTO #TempTaxValues
+    (
+        [BetslipId],
+        [DateTimeStamp],
+        [Number],
+        [Stake],
+        [WinningStake],
+        [Payout],
+        [GGR],
+        [Tax Amount],
+        [VAT],
+        [GameType],
+        [Date],
+        [ResultingStatus]
+    )
+    SELECT [sq].[BetslipId],
+           [sq].[DateTimeStamp] AS [DateTimeStamp],
+           sq.Number,
+           [sq].[Stake],
+           [sq].[WinningStake],
+           [sq].[Payout],
+           [sq].[GGR],
+           [sq].[Tax Amount],
+           [sq].[VAT],
+           [sq].[TransactionTypeCategory] AS [GameType],
+           [sq].[Date],
+           ISNULL([rs].[Description], sq.[Status]) AS [ResultingStatus]
+    FROM
+    (
+        SELECT SUM([Final].Number) AS Number,
+               SUM([Final].[Stake]) AS [Stake],
+               SUM([Final].[WinningStake]) AS [WinningStake],
+               SUM([Final].[Payout]) AS [Payout],
+               ISNULL(SUM([Final].[Stake]) - SUM([Final].[Payout]), 0.0) AS [GGR],
+               ISNULL((SUM([Final].[Stake]) - SUM([Final].[Payout])) * 0.065, 0.0) AS [Tax Amount],
+               ISNULL(
+                         ((ISNULL(SUM([Final].[Stake]), 0) - ISNULL(SUM([Final].[Payout]), 0))
+                          - ((ISNULL(SUM([Final].[Stake]), 0) - ISNULL(SUM([Final].[Payout]), 0)) * 0.065)
+                         ) * @VATPerc
+                         / (100 + @VATPerc),
+                         0.0
+                     ) AS [VAT],
+               [Final].[Date],
+               CASE
+                   WHEN [Final].[TransactionTypeCategory] LIKE ''%BetGame%'' THEN
+                       ''Betgames''
+                   WHEN [Final].[TransactionTypeCategory] LIKE ''%Lucky%'' THEN
+                       ''LuckyNumbers''
+                   WHEN [Final].[TransactionTypeCategory] LIKE ''%Live%'' or [Final].[TransactionTypeCategory] LIKE ''%Casino%'' THEN
+                       ''LiveGames''
+                   WHEN [Final].[TransactionTypeCategory] LIKE ''%JikaSport%'' or [Final].[TransactionTypeCategory] LIKE ''%Virt%'' THEN
+                       ''Jika''
+                   WHEN [Final].[TransactionTypeCategory] LIKE ''%Win Boost Cash Bonus%'' THEN
+                       ''WinBoost''
+                   ELSE
+                       ''Sports''
+               END AS [TransactionTypeCategory],
+               [Final].[BetslipId],
+               [Final].[DateTimeStamp],
+               Final.[Status]
+        FROM
+        (
+            SELECT 0 AS Number,
+                   0 AS [Stake],
+                   ISNULL([W].[WinningStake], 0.0) AS [WinningStake],
+                   0 AS [Payout],
+                   0 AS [GGR],
+                   0 AS [Tax Amount],
+                   0 AS [VAT],
+                   [W].[Date] AS [Date],
+                   [W].[TransactionTypeCategory] AS [TransactionTypeCategory],
+                   [W].[BetslipId],
+                   [Date] AS [DateTimeStamp],
+                   NULL AS [Status]
+            FROM [#WinningStake] AS [W]
+            UNION ALL
+            SELECT SUM([NoOfBets]) AS Number,
+                   SUM(ISNULL([Stake].[Amount], 0.0)) AS [Stake],
+                   0 AS [WinningStake],
+                   0 AS [Payout],
+                   0 AS [GGR],
+                   0 AS [Tax Amount],
+                   0 AS [VAT],
+                   CAST([Date] AS DATE) AS [Date],
+                   [Stake].[TransactionType] AS [TransactionTypeCategory],
+                   [Stake].[BetslipId],
+                   [Date] AS [DateTimeStamp],
+                   [ResultingStatus] AS [Status]
+            FROM [#ALLWagers] AS [Stake]
+            GROUP BY CAST([Date] AS DATE),
+                     [Stake].[TransactionType],
+                     [Stake].[BetslipId],
+                     [Date],
+                     [ResultingStatus]
+            UNION ALL
+            SELECT 0 AS Number,
+                   0 AS [Stake],
+                   0 AS [WinningStake],
+                   SUM(ISNULL([Payout].[Amount], 0.0)) AS [Payout],
+                   0 AS [GGR],
+                   0 AS [Tax Amount],
+                   0 AS [VAT],
+                   CAST([Date] AS DATE) AS [Date],
+                   [Payout].[TransactionType] AS [TransactionTypeCategory],
+                   [Payout].[BetslipId],
+                   [Date] AS [DateTimeStamp],
+                   NULL AS [Status]
+            FROM [#PayoutWagers] AS [Payout]
+            WHERE [TransactionTypeCategory] = ''Payout''
+            GROUP BY CAST([Date] AS DATE),
+                     [Payout].[TransactionType],
+                     [Payout].[BetslipId],
+                     [Payout].[Date]
+            UNION ALL
+            SELECT 0 AS Number,
+                   0 AS [Stake],
+                   0 AS [WinningStake],
+                   SUM(ISNULL([Payout].[Amount], 0.0)) AS [Payout],
+                   0 AS [GGR],
+                   0 AS [Tax Amount],
+                   0 AS [VAT],
+                   CAST([Date] AS DATE) AS [Date],
+                   [Payout].[TransactionType] AS [TransactionTypeCategory],
+                   [Payout].[BetslipId],
+                   [Date] AS [DateTimeStamp],
+                   NULL AS [Status]
+            FROM [#PayoutWagers] AS [Payout]
+            WHERE [TransactionType] = ''Win Boost Cash Bonus''
+            GROUP BY CAST([Date] AS DATE),
+                     [Payout].[TransactionType],
+                     [Payout].[BetslipId],
+                     [Payout].[Date]
+        ) AS [Final]
+        GROUP BY [Final].[Date],
+                 [Final].[TransactionTypeCategory],
+                 [Final].[BetslipId],
+                 [Final].[DateTimeStamp],
+                 Final.[Status]
+    ) AS [sq]
+        LEFT JOIN [VuvuzelaZA].[dbo].[Betslip] AS [bs]
+            ON [bs].[BetslipId] = [sq].[BetslipId]
+               AND ISNULL([bs].[InitialSettlementDateTime], [bs].[SettlementDateTime])
+               BETWEEN @StartDate AND @EndDate
+        LEFT JOIN [VuvuzelaZA].[dbo].[ResultingStatus] AS [rs]
+            ON [rs].[ResultingStatusId] = [bs].[ResultingStatus]
+               AND [rs].[Entity] = ''Betslip'';
+
+
+
+
+   INSERT INTO #Merge
+    (
+        Date,
+        Number,
+        Stake,
+        WinningStake,
+        Payout,
+        GGR,
+        [Tax Amount],
+        VAT,
+        GameType,
+        ResultingStatus
+    )
+    SELECT Date,
+           SUM(Number),
+           SUM(Stake),
+           SUM(WinningStake),
+           SUM(Payout),
+           SUM(GGR),
+           SUM([Tax Amount]),
+           SUM(VAT),
+           isnull(GameType,''''),
+           isnull(ResultingStatus,'''')
+    FROM #TempTaxValues
+    GROUP BY Date,
+             GameType,
+             ResultingStatus;
+
+	select * from #Merge
+	')
+
+
+
+WITH RESULT SETS
+	(
+		(
+        [Date] [DATE],
+        [Number] [INT],
+        [Stake] [DECIMAL](38, 4),
+        [WinningStake] [DECIMAL](38, 4),
+        [Payout] [DECIMAL](38, 4),
+        [GGR] [DECIMAL](38, 4),
+        [Tax Amount] [NUMERIC](38, 6),
+        [VAT] [NUMERIC](38, 6),
+        [GameType] [VARCHAR](12),
+        [ResultingStatus] [VARCHAR](50)
+		)
+	)</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Connections[OleDbConnection]"
+                      connectionManagerID="{A23B11D0-AE7D-4789-9FCF-EB0A77B9504C}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[172.27.0.79.VuvuzelaZA.DOSBISUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Date]"
+                          dataType="dbDate"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Date]"
+                          name="Date"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Number]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Number]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Number]"
+                          name="Number"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Stake]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Stake]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Stake]"
+                          name="Stake"
+                          precision="38"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[WinningStake]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WinningStake]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[WinningStake]"
+                          name="WinningStake"
+                          precision="38"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Payout]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Payout]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Payout]"
+                          name="Payout"
+                          precision="38"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[GGR]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GGR]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[GGR]"
+                          name="GGR"
+                          precision="38"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Tax Amount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Tax Amount]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[Tax Amount]"
+                          name="Tax Amount"
+                          precision="38"
+                          scale="6"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[VAT]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VAT]"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[VAT]"
+                          name="VAT"
+                          precision="38"
+                          scale="6"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[GameType]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GameType]"
+                          length="12"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[GameType]"
+                          name="GameType"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ResultingStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ResultingStatus]"
+                          length="50"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].Columns[ResultingStatus]"
+                          name="ResultingStatus"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Date]"
+                          dataType="dbDate"
+                          name="Date" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Number]"
+                          dataType="i4"
+                          name="Number" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Stake]"
+                          dataType="numeric"
+                          name="Stake"
+                          precision="38"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[WinningStake]"
+                          dataType="numeric"
+                          name="WinningStake"
+                          precision="38"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Payout]"
+                          dataType="numeric"
+                          name="Payout"
+                          precision="38"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GGR]"
+                          dataType="numeric"
+                          name="GGR"
+                          precision="38"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[Tax Amount]"
+                          dataType="numeric"
+                          name="Tax Amount"
+                          precision="38"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[VAT]"
+                          dataType="numeric"
+                          name="VAT"
+                          precision="38"
+                          scale="6" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[GameType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="12"
+                          name="GameType" />
+                        <externalMetadataColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output].ExternalColumns[ResultingStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="ResultingStatus" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Date]"
+                          dataType="dbDate"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Date]"
+                          name="Date" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Number]"
+                          dataType="i4"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Number]"
+                          name="Number" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Stake]"
+                          dataType="numeric"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Stake]"
+                          name="Stake"
+                          precision="38"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WinningStake]"
+                          dataType="numeric"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[WinningStake]"
+                          name="WinningStake"
+                          precision="38"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Payout]"
+                          dataType="numeric"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Payout]"
+                          name="Payout"
+                          precision="38"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GGR]"
+                          dataType="numeric"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GGR]"
+                          name="GGR"
+                          precision="38"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Tax Amount]"
+                          dataType="numeric"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[Tax Amount]"
+                          name="Tax Amount"
+                          precision="38"
+                          scale="6" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VAT]"
+                          dataType="numeric"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[VAT]"
+                          name="VAT"
+                          precision="38"
+                          scale="6" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GameType]"
+                          codePage="1252"
+                          dataType="str"
+                          length="12"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[GameType]"
+                          name="GameType" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ResultingStatus]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ResultingStatus]"
+                          name="ResultingStatus" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SA TAX REPORT\Data Flow Task.Paths[OLE DB Source Output]"
+                  endId="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SA TAX REPORT\Data Flow Task\OLE DB Source.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SA TAX REPORT\LOAD dbFinanceReporting"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{2E994D41-6FE6-4F04-850B-3FF3EB5BB8CD}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="LOAD dbFinanceReporting"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{D03C42AD-6487-44A3-A1A6-7707D4598C9B}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[p_ReportMerge_TaxSummary_BetwaySouthAfrica_ManualRun_FromIOM]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\SA TAX REPORT\TRUNCATE STAGE"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{0B50EBA4-1184-465F-AFE2-E6CC47A91FC2}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="TRUNCATE STAGE"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2019; © 2019 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE [dbFinanceStaging].[dbo].[Stage_Report_TaxSummary_BetwaySouthAfrica]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SA TAX REPORT.PrecedenceConstraints[Constraint]"
+          DTS:CreationName=""
+          DTS:DTSID="{3FB27B03-7BDE-45E0-9C5B-D0894095D323}"
+          DTS:From="Package\SA TAX REPORT\TRUNCATE STAGE"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint"
+          DTS:To="Package\SA TAX REPORT\Data Flow Task" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\SA TAX REPORT.PrecedenceConstraints[Constraint 1]"
+          DTS:CreationName=""
+          DTS:DTSID="{70C9EDF3-8B08-4DC1-A9B1-46CCFF36BBCC}"
+          DTS:From="Package\SA TAX REPORT\Data Flow Task"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 1"
+          DTS:To="Package\SA TAX REPORT\LOAD dbFinanceReporting" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="152,42.6666666666667"
+          Id="Package\SA TAX REPORT\Data Flow Task"
+          TopLeft="30.8333333333334,108.166666666667" />
+        <NodeLayout
+          Size="202.666666666667,42.6666666666667"
+          Id="Package\SA TAX REPORT\LOAD dbFinanceReporting"
+          TopLeft="5.50000000000003,210.833333333334" />
+        <NodeLayout
+          Size="166.666666666667,42.6666666666667"
+          Id="Package\SA TAX REPORT\TRUNCATE STAGE"
+          TopLeft="23.5,5.50000000000004" />
+        <EdgeLayout
+          Id="Package\SA TAX REPORT.PrecedenceConstraints[Constraint]"
+          TopLeft="106.833333333333,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SA TAX REPORT.PrecedenceConstraints[Constraint 1]"
+          TopLeft="106.833333333333,150.833333333333">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60.0000000000001"
+              Start="0,0"
+              End="0,52.5000000000001">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5000000000001" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="213.333333333334,308.666666666667"
+          Size="213.333333333334,351.333333333334"
+          Id="Package\SA TAX REPORT"
+          TopLeft="5.50000000000004,5.49999999999997" />
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SA TAX REPORT\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="150.666666666667,42.6666666666667"
+          Id="Package\SA TAX REPORT\Data Flow Task\OLE DB Source"
+          TopLeft="223,117" />
+        <NodeLayout
+          Size="172,42.6666666666667"
+          Id="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination"
+          TopLeft="203,239" />
+        <EdgeLayout
+          Id="Package\SA TAX REPORT\Data Flow Task.Paths[OLE DB Source Output]"
+          TopLeft="298.333333333333,159.666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.33333333333331,79.3333333333333"
+              Start="0,0"
+              End="-9.33333333333331,71.8333333333333">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,35.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,35.6666666666667"
+                    Point2="0,39.6666666666667"
+                    Point3="-4,39.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-5.33333333333331,39.6666666666667" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.33333333333331,39.6666666666667"
+                    Point2="-9.33333333333331,39.6666666666667"
+                    Point3="-9.33333333333331,43.6666666666667" />
+                  <mssgle:LineSegment
+                    End="-9.33333333333331,71.8333333333333" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SA TAX REPORT\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SA TAX REPORT\Data Flow Task\OLE DB Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

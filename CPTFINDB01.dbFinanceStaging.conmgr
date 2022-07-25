@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="CPTFINDB01.dbFinanceStaging.FinanceDataProcUser"
+  DTS:DTSID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=CPTFINDB01;User ID=FinanceDataProcUser;Initial Catalog=dbFinanceStaging;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYdE5TJXffUysQCEcs9ig4gAAAAACAAAAAAADZgAAwAAAABAAAADHLkE+dhAWmt4BaQLjRTpkAAAAAASAAACgAAAAEAAAAKQcqTxEIdiIOJNSBabpJzWAAAAARu7ejJkLe5zmIFAr2CzFjWwn29O4Z8TjyjJGdO2L1zBLxzFGslAYfAWPG481rtY8oStV8P4Z/KwBST20BjoVPZWmvJiOXsCtMVYm25Ck+BWi8MJy1UDHVlFg/eUu4Rjn2jrpMO+UoQ2XmZ0cBvqmtM3uY5/8trZeChZYw2kTP1kUAAAAqos0F+sE1mgFoqyMuY1wWMPtD7I=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

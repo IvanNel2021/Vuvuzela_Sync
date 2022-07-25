@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<DTS:ConnectionManager xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:ObjectName="172.27.0.79.Vuvuzela.DOSBISUser"
+  DTS:DTSID="{11938FDE-7DA3-415F-A2AD-1C86AD68390D}"
+  DTS:CreationName="OLEDB">
+  <DTS:ObjectData>
+    <DTS:ConnectionManager
+      DTS:ConnectionString="Data Source=172.27.0.79;User ID=DOSBISUser;Initial Catalog=Vuvuzela;Provider=SQLNCLI11.1;Persist Security Info=True;Auto Translate=False;">
+      <DTS:Password
+        DTS:Name="Password"
+        Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAYdE5TJXffUysQCEcs9ig4gAAAAACAAAAAAADZgAAwAAAABAAAAAbCRqQW5YHRJ9IUcCBtCPYAAAAAASAAACgAAAAEAAAABJK+pi0pG7cAEz0+gtqB8uAAAAA3OogeDwOgH6PlRKANUZXgca4nfxz5P9OHyYBP6Jj8A2ZxijL9rszvS8ZEdfuzqO9Rgj0LtidkXT9UYti5nT5qlKwJQhRYtydSK0bC6Y+usx2CQQPhQDKhb4/st3hDlRuTgFsepqhRZH6juUXw9G4XrvbQDmhFQUDeYrchI3lnGEUAAAAn9G6PiqmuGRLPWC7nGYDBgQNxwg=</DTS:Password>
+    </DTS:ConnectionManager>
+  </DTS:ObjectData>
+</DTS:ConnectionManager>

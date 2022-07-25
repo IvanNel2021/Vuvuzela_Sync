@@ -1,0 +1,2252 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="5/11/2022 11:56:19 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="WHLDOMTS01"
+  DTS:CreatorName="WHLBASE\biadmin-ivan.nel"
+  DTS:DTSID="{A02B8A36-24D0-4F9A-BB85-C71E216E05A9}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="12.0.5626.31"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="Payment"
+  DTS:PackageType="5"
+  DTS:VersionBuild="6"
+  DTS:VersionGUID="{CFD031AB-7B82-4DB4-BB82-CA21C11CE772}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Vuvuzela Payment"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{3CFC8B91-3368-4308-AAF8-DB3BFF135742}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Vuvuzela Payment">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Vuvuzela Payment\Payment"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{3C417BA2-5E09-4F01-8D45-0211D596E5D3}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Payment"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\Vuvuzela Payment\Payment\Payment"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Payment"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Payment]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	*
+FROM 
+		Vuvuzela.dbo.Payment
+WHERE (	
+		EditedDateTime &gt;= CAST(DATEADD(dd,-1,GETDATE()) AS DATE)
+and 	EditedDateTime&lt;CAST(GETDATE() AS DATE)
+	  )</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Vuvuzela Payment\Payment\Payment.Connections[OleDbConnection]"
+                      connectionManagerID="{11938FDE-7DA3-415F-A2AD-1C86AD68390D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[172.27.0.79.Vuvuzela.DOSBISUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentId]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentId]"
+                          name="PaymentId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaybillNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaybillNumber]"
+                          length="50"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaybillNumber]"
+                          name="PaybillNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[MSISDN]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[MSISDN]"
+                          length="25"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[MSISDN]"
+                          name="MSISDN"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[DestinationAccountNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[DestinationAccountNumber]"
+                          length="100"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[DestinationAccountNumber]"
+                          name="DestinationAccountNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountId]"
+                          name="AccountId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[ReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[ReferenceNumber]"
+                          length="100"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[ReferenceNumber]"
+                          name="ReferenceNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Amount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Amount]"
+                          name="Amount"
+                          precision="14"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CurrencyISO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CurrencyISO]"
+                          length="3"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CurrencyISO]"
+                          name="CurrencyISO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderFirstName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountHolderFirstName]"
+                          length="1000"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderFirstName]"
+                          name="AccountHolderFirstName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderLastName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountHolderLastName]"
+                          length="1000"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderLastName]"
+                          name="AccountHolderLastName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentSequenceId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentSequenceId]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentSequenceId]"
+                          name="PaymentSequenceId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedById]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CreatedById]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedById]"
+                          name="CreatedById"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CreatedDateTime]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedDateTime]"
+                          name="CreatedDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedById]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedById]"
+                          name="EditedById"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          name="EditedDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Version]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Version]"
+                          name="Version"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          name="IsDeleted"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentMethodId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentMethodId]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentMethodId]"
+                          name="PaymentMethodId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[BrandPaymentMethodId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[BrandPaymentMethodId]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[BrandPaymentMethodId]"
+                          name="BrandPaymentMethodId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsAllocated]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[IsAllocated]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsAllocated]"
+                          name="IsAllocated"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AutomaticProcessingStatus]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AutomaticProcessingStatus]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AutomaticProcessingStatus]"
+                          name="AutomaticProcessingStatus"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PreAllocationReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PreAllocationReferenceNumber]"
+                          length="100"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PreAllocationReferenceNumber]"
+                          name="PreAllocationReferenceNumber"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentId]"
+                          dataType="guid"
+                          name="PaymentId" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaybillNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PaybillNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[MSISDN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="MSISDN" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[DestinationAccountNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="DestinationAccountNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                          dataType="guid"
+                          name="AccountId" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[ReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ReferenceNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                          dataType="numeric"
+                          name="Amount"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CurrencyISO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="CurrencyISO" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountHolderFirstName]"
+                          dataType="wstr"
+                          length="1000"
+                          name="AccountHolderFirstName" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountHolderLastName]"
+                          dataType="wstr"
+                          length="1000"
+                          name="AccountHolderLastName" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentSequenceId]"
+                          dataType="i4"
+                          name="PaymentSequenceId" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CreatedById]"
+                          dataType="guid"
+                          name="CreatedById" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="CreatedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentMethodId]"
+                          dataType="guid"
+                          name="PaymentMethodId" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[BrandPaymentMethodId]"
+                          dataType="guid"
+                          name="BrandPaymentMethodId" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[IsAllocated]"
+                          dataType="bool"
+                          name="IsAllocated" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AutomaticProcessingStatus]"
+                          dataType="i4"
+                          name="AutomaticProcessingStatus" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PreAllocationReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="PreAllocationReferenceNumber" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentId]"
+                          dataType="guid"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentId]"
+                          name="PaymentId" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaybillNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaybillNumber]"
+                          name="PaybillNumber" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[MSISDN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[MSISDN]"
+                          name="MSISDN" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[DestinationAccountNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[DestinationAccountNumber]"
+                          name="DestinationAccountNumber" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                          dataType="guid"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                          name="AccountId" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ReferenceNumber]"
+                          name="ReferenceNumber" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                          dataType="numeric"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                          name="Amount"
+                          precision="14"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CurrencyISO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CurrencyISO]"
+                          name="CurrencyISO" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountHolderFirstName]"
+                          dataType="wstr"
+                          length="1000"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountHolderFirstName]"
+                          name="AccountHolderFirstName" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountHolderLastName]"
+                          dataType="wstr"
+                          length="1000"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountHolderLastName]"
+                          name="AccountHolderLastName" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentSequenceId]"
+                          dataType="i4"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentSequenceId]"
+                          name="PaymentSequenceId" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CreatedById]"
+                          dataType="guid"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CreatedById]"
+                          name="CreatedById" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CreatedDateTime]"
+                          name="CreatedDateTime" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          dataType="guid"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          name="EditedById" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          name="EditedDateTime" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[Version]"
+                          dataType="i4"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[Version]"
+                          name="Version" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          dataType="bool"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          name="IsDeleted" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentMethodId]"
+                          dataType="guid"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentMethodId]"
+                          name="PaymentMethodId" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[BrandPaymentMethodId]"
+                          dataType="guid"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[BrandPaymentMethodId]"
+                          name="BrandPaymentMethodId" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[IsAllocated]"
+                          dataType="bool"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[IsAllocated]"
+                          name="IsAllocated" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AutomaticProcessingStatus]"
+                          dataType="i4"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AutomaticProcessingStatus]"
+                          name="AutomaticProcessingStatus" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PreAllocationReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PreAllocationReferenceNumber]"
+                          name="PreAllocationReferenceNumber" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\Vuvuzela Payment\Payment\Payment Dest"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Payment Dest"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[Vuvuzela].[Stage_Payment]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\Vuvuzela Payment\Payment\Payment Dest.Connections[OleDbConnection]"
+                      connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[PaymentId]"
+                          cachedDataType="guid"
+                          cachedName="PaymentId"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentId]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentId]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[PaybillNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PaybillNumber"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaybillNumber]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaybillNumber]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[MSISDN]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="MSISDN"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[MSISDN]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[MSISDN]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[DestinationAccountNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="DestinationAccountNumber"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[DestinationAccountNumber]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[DestinationAccountNumber]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[AccountId]"
+                          cachedDataType="guid"
+                          cachedName="AccountId"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountId]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[ReferenceNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="ReferenceNumber"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[ReferenceNumber]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[ReferenceNumber]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[Amount]"
+                          cachedDataType="numeric"
+                          cachedName="Amount"
+                          cachedPrecision="14"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Amount]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[CurrencyISO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="CurrencyISO"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyISO]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CurrencyISO]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[AccountHolderFirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="1000"
+                          cachedName="AccountHolderFirstName"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountHolderFirstName]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderFirstName]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[AccountHolderLastName]"
+                          cachedDataType="wstr"
+                          cachedLength="1000"
+                          cachedName="AccountHolderLastName"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountHolderLastName]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderLastName]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[PaymentSequenceId]"
+                          cachedDataType="i4"
+                          cachedName="PaymentSequenceId"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentSequenceId]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentSequenceId]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[CreatedById]"
+                          cachedDataType="guid"
+                          cachedName="CreatedById"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CreatedById]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedById]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[CreatedDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="CreatedDateTime"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDateTime]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedDateTime]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[EditedById]"
+                          cachedDataType="guid"
+                          cachedName="EditedById"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedById]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[EditedDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="EditedDateTime"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedDateTime]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[Version]"
+                          cachedDataType="i4"
+                          cachedName="Version"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Version]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[IsDeleted]"
+                          cachedDataType="bool"
+                          cachedName="IsDeleted"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsDeleted]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[PaymentMethodId]"
+                          cachedDataType="guid"
+                          cachedName="PaymentMethodId"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentMethodId]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentMethodId]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[BrandPaymentMethodId]"
+                          cachedDataType="guid"
+                          cachedName="BrandPaymentMethodId"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[BrandPaymentMethodId]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[BrandPaymentMethodId]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[IsAllocated]"
+                          cachedDataType="bool"
+                          cachedName="IsAllocated"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[IsAllocated]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsAllocated]" />
+                        <inputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[AutomaticProcessingStatus]"
+                          cachedDataType="i4"
+                          cachedName="AutomaticProcessingStatus"
+                          externalMetadataColumnId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AutomaticProcessingStatus]"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AutomaticProcessingStatus]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentId]"
+                          dataType="guid"
+                          name="PaymentId" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaybillNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PaybillNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[MSISDN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="MSISDN" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[DestinationAccountNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="DestinationAccountNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                          dataType="guid"
+                          name="AccountId" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[ReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ReferenceNumber" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                          dataType="numeric"
+                          name="Amount"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyISO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="CurrencyISO" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountHolderFirstName]"
+                          dataType="wstr"
+                          length="1000"
+                          name="AccountHolderFirstName" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountHolderLastName]"
+                          dataType="wstr"
+                          length="1000"
+                          name="AccountHolderLastName" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentSequenceId]"
+                          dataType="i4"
+                          name="PaymentSequenceId" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CreatedById]"
+                          dataType="guid"
+                          name="CreatedById" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="CreatedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentMethodId]"
+                          dataType="guid"
+                          name="PaymentMethodId" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[BrandPaymentMethodId]"
+                          dataType="guid"
+                          name="BrandPaymentMethodId" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[IsAllocated]"
+                          dataType="bool"
+                          name="IsAllocated" />
+                        <externalMetadataColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AutomaticProcessingStatus]"
+                          dataType="i4"
+                          name="AutomaticProcessingStatus" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\Vuvuzela Payment\Payment\Payment Dest.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment Dest.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\Vuvuzela Payment\Payment\Payment Dest.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\Vuvuzela Payment\Payment\Payment Dest.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\Vuvuzela Payment\Payment.Paths[OLE DB Source Output]"
+                  endId="Package\Vuvuzela Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\Vuvuzela Payment\Payment\Payment.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Vuvuzela Payment\Sync Payment"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{CA151E72-8B90-4DC1-B0EE-89029A26308F}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sync Payment"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[sp_Stage_Vuvuzela_Payment]&#xA;&#xA;&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\Vuvuzela Payment\Truncate dbFinanceStaging - dbo - Stage_Payment"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{DC919D53-B297-4BE3-83D3-55BF67917A3A}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate dbFinanceStaging - dbo - Stage_Payment"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE [Vuvuzela].[Stage_Payment]&#xA;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Vuvuzela Payment.PrecedenceConstraints[Constraint 11]"
+          DTS:CreationName=""
+          DTS:DTSID="{E702EDD1-C3F0-4781-9967-DA03C00F55D5}"
+          DTS:From="Package\Vuvuzela Payment\Payment"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 11"
+          DTS:To="Package\Vuvuzela Payment\Sync Payment" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\Vuvuzela Payment.PrecedenceConstraints[Constraint 8]"
+          DTS:CreationName=""
+          DTS:DTSID="{E68A8C42-F65C-41FA-B021-7415AE4E4EB7}"
+          DTS:From="Package\Vuvuzela Payment\Truncate dbFinanceStaging - dbo - Stage_Payment"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 8"
+          DTS:To="Package\Vuvuzela Payment\Payment" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\VuvuzelaZA Payment"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{89B5E215-BB28-47C5-8C31-D7571758948C}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="VuvuzelaZA Payment">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\VuvuzelaZA Payment\Payment"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{69401566-0D68-4525-9557-9788048A6F3A}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Payment"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\VuvuzelaZA Payment\Payment\Payment"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="Payment"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dbo].[Payment]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor">SELECT 
+	*
+FROM 
+		VuvuzelaZA.dbo.Payment
+WHERE (	
+		EditedDateTime &gt;= CAST(DATEADD(dd,-1,GETDATE()) AS DATE)
+and 	EditedDateTime&lt;CAST(GETDATE() AS DATE)
+	  )</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\VuvuzelaZA Payment\Payment\Payment.Connections[OleDbConnection]"
+                      connectionManagerID="{11938FDE-7DA3-415F-A2AD-1C86AD68390D}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[172.27.0.79.Vuvuzela.DOSBISUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentId]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentId]"
+                          name="PaymentId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaybillNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaybillNumber]"
+                          length="50"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaybillNumber]"
+                          name="PaybillNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[MSISDN]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[MSISDN]"
+                          length="25"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[MSISDN]"
+                          name="MSISDN"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[DestinationAccountNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[DestinationAccountNumber]"
+                          length="100"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[DestinationAccountNumber]"
+                          name="DestinationAccountNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountId]"
+                          name="AccountId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[ReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[ReferenceNumber]"
+                          length="100"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[ReferenceNumber]"
+                          name="ReferenceNumber"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Amount]"
+                          dataType="numeric"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Amount]"
+                          name="Amount"
+                          precision="14"
+                          scale="4"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CurrencyISO]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CurrencyISO]"
+                          length="3"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CurrencyISO]"
+                          name="CurrencyISO"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderFirstName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountHolderFirstName]"
+                          length="1000"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderFirstName]"
+                          name="AccountHolderFirstName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderLastName]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountHolderLastName]"
+                          length="1000"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderLastName]"
+                          name="AccountHolderLastName"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentSequenceId]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentSequenceId]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentSequenceId]"
+                          name="PaymentSequenceId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedById]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CreatedById]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedById]"
+                          name="CreatedById"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CreatedDateTime]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedDateTime]"
+                          name="CreatedDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedById]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedById]"
+                          name="EditedById"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedDateTime]"
+                          name="EditedDateTime"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Version]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Version]"
+                          name="Version"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsDeleted]"
+                          name="IsDeleted"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentMethodId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentMethodId]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentMethodId]"
+                          name="PaymentMethodId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[BrandPaymentMethodId]"
+                          dataType="guid"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[BrandPaymentMethodId]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[BrandPaymentMethodId]"
+                          name="BrandPaymentMethodId"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsAllocated]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[IsAllocated]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsAllocated]"
+                          name="IsAllocated"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AutomaticProcessingStatus]"
+                          dataType="i4"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AutomaticProcessingStatus]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AutomaticProcessingStatus]"
+                          name="AutomaticProcessingStatus"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PreAllocationReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PreAllocationReferenceNumber]"
+                          length="100"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PreAllocationReferenceNumber]"
+                          name="PreAllocationReferenceNumber"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentId]"
+                          dataType="guid"
+                          name="PaymentId" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaybillNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PaybillNumber" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[MSISDN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="MSISDN" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[DestinationAccountNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="DestinationAccountNumber" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountId]"
+                          dataType="guid"
+                          name="AccountId" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[ReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ReferenceNumber" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[Amount]"
+                          dataType="numeric"
+                          name="Amount"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CurrencyISO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="CurrencyISO" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountHolderFirstName]"
+                          dataType="wstr"
+                          length="1000"
+                          name="AccountHolderFirstName" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AccountHolderLastName]"
+                          dataType="wstr"
+                          length="1000"
+                          name="AccountHolderLastName" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentSequenceId]"
+                          dataType="i4"
+                          name="PaymentSequenceId" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CreatedById]"
+                          dataType="guid"
+                          name="CreatedById" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="CreatedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PaymentMethodId]"
+                          dataType="guid"
+                          name="PaymentMethodId" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[BrandPaymentMethodId]"
+                          dataType="guid"
+                          name="BrandPaymentMethodId" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[IsAllocated]"
+                          dataType="bool"
+                          name="IsAllocated" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[AutomaticProcessingStatus]"
+                          dataType="i4"
+                          name="AutomaticProcessingStatus" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].ExternalColumns[PreAllocationReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="PreAllocationReferenceNumber" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentId]"
+                          dataType="guid"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentId]"
+                          name="PaymentId" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaybillNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaybillNumber]"
+                          name="PaybillNumber" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[MSISDN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[MSISDN]"
+                          name="MSISDN" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[DestinationAccountNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[DestinationAccountNumber]"
+                          name="DestinationAccountNumber" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                          dataType="guid"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountId]"
+                          name="AccountId" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ReferenceNumber]"
+                          name="ReferenceNumber" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                          dataType="numeric"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[Amount]"
+                          name="Amount"
+                          precision="14"
+                          scale="4" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CurrencyISO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CurrencyISO]"
+                          name="CurrencyISO" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountHolderFirstName]"
+                          dataType="wstr"
+                          length="1000"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountHolderFirstName]"
+                          name="AccountHolderFirstName" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountHolderLastName]"
+                          dataType="wstr"
+                          length="1000"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AccountHolderLastName]"
+                          name="AccountHolderLastName" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentSequenceId]"
+                          dataType="i4"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentSequenceId]"
+                          name="PaymentSequenceId" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CreatedById]"
+                          dataType="guid"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CreatedById]"
+                          name="CreatedById" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[CreatedDateTime]"
+                          name="CreatedDateTime" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          dataType="guid"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[EditedById]"
+                          name="EditedById" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[EditedDateTime]"
+                          name="EditedDateTime" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[Version]"
+                          dataType="i4"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[Version]"
+                          name="Version" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          dataType="bool"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[IsDeleted]"
+                          name="IsDeleted" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentMethodId]"
+                          dataType="guid"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PaymentMethodId]"
+                          name="PaymentMethodId" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[BrandPaymentMethodId]"
+                          dataType="guid"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[BrandPaymentMethodId]"
+                          name="BrandPaymentMethodId" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[IsAllocated]"
+                          dataType="bool"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[IsAllocated]"
+                          name="IsAllocated" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AutomaticProcessingStatus]"
+                          dataType="i4"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[AutomaticProcessingStatus]"
+                          name="AutomaticProcessingStatus" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PreAllocationReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[PreAllocationReferenceNumber]"
+                          name="PreAllocationReferenceNumber" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\VuvuzelaZA Payment\Payment\Payment Dest"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="Payment Dest"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[VuvuZelaZA].[Stage_Payment]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Connections[OleDbConnection]"
+                      connectionManagerID="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[CPTFINDB01.dbFinanceStaging.FinanceDataProcUser]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[PaymentId]"
+                          cachedDataType="guid"
+                          cachedName="PaymentId"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentId]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentId]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[PaybillNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="50"
+                          cachedName="PaybillNumber"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaybillNumber]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaybillNumber]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[MSISDN]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="25"
+                          cachedName="MSISDN"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[MSISDN]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[MSISDN]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[DestinationAccountNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="DestinationAccountNumber"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[DestinationAccountNumber]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[DestinationAccountNumber]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[AccountId]"
+                          cachedDataType="guid"
+                          cachedName="AccountId"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountId]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[ReferenceNumber]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="100"
+                          cachedName="ReferenceNumber"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[ReferenceNumber]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[ReferenceNumber]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[Amount]"
+                          cachedDataType="numeric"
+                          cachedName="Amount"
+                          cachedPrecision="14"
+                          cachedScale="4"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Amount]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[CurrencyISO]"
+                          cachedCodepage="1252"
+                          cachedDataType="str"
+                          cachedLength="3"
+                          cachedName="CurrencyISO"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyISO]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CurrencyISO]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[AccountHolderFirstName]"
+                          cachedDataType="wstr"
+                          cachedLength="1000"
+                          cachedName="AccountHolderFirstName"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountHolderFirstName]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderFirstName]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[AccountHolderLastName]"
+                          cachedDataType="wstr"
+                          cachedLength="1000"
+                          cachedName="AccountHolderLastName"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountHolderLastName]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AccountHolderLastName]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[PaymentSequenceId]"
+                          cachedDataType="i4"
+                          cachedName="PaymentSequenceId"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentSequenceId]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentSequenceId]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[CreatedById]"
+                          cachedDataType="guid"
+                          cachedName="CreatedById"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CreatedById]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedById]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[CreatedDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="CreatedDateTime"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDateTime]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[CreatedDateTime]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[EditedById]"
+                          cachedDataType="guid"
+                          cachedName="EditedById"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedById]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[EditedDateTime]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="EditedDateTime"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[EditedDateTime]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[Version]"
+                          cachedDataType="i4"
+                          cachedName="Version"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[Version]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[IsDeleted]"
+                          cachedDataType="bool"
+                          cachedName="IsDeleted"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsDeleted]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[PaymentMethodId]"
+                          cachedDataType="guid"
+                          cachedName="PaymentMethodId"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentMethodId]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[PaymentMethodId]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[BrandPaymentMethodId]"
+                          cachedDataType="guid"
+                          cachedName="BrandPaymentMethodId"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[BrandPaymentMethodId]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[BrandPaymentMethodId]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[IsAllocated]"
+                          cachedDataType="bool"
+                          cachedName="IsAllocated"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[IsAllocated]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[IsAllocated]" />
+                        <inputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].Columns[AutomaticProcessingStatus]"
+                          cachedDataType="i4"
+                          cachedName="AutomaticProcessingStatus"
+                          externalMetadataColumnId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AutomaticProcessingStatus]"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output].Columns[AutomaticProcessingStatus]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentId]"
+                          dataType="guid"
+                          name="PaymentId" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaybillNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="50"
+                          name="PaybillNumber" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[MSISDN]"
+                          codePage="1252"
+                          dataType="str"
+                          length="25"
+                          name="MSISDN" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[DestinationAccountNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="DestinationAccountNumber" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountId]"
+                          dataType="guid"
+                          name="AccountId" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[ReferenceNumber]"
+                          codePage="1252"
+                          dataType="str"
+                          length="100"
+                          name="ReferenceNumber" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[Amount]"
+                          dataType="numeric"
+                          name="Amount"
+                          precision="14"
+                          scale="4" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CurrencyISO]"
+                          codePage="1252"
+                          dataType="str"
+                          length="3"
+                          name="CurrencyISO" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountHolderFirstName]"
+                          dataType="wstr"
+                          length="1000"
+                          name="AccountHolderFirstName" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AccountHolderLastName]"
+                          dataType="wstr"
+                          length="1000"
+                          name="AccountHolderLastName" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentSequenceId]"
+                          dataType="i4"
+                          name="PaymentSequenceId" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CreatedById]"
+                          dataType="guid"
+                          name="CreatedById" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[CreatedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="CreatedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[EditedById]"
+                          dataType="guid"
+                          name="EditedById" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[EditedDateTime]"
+                          dataType="dbTimeStamp"
+                          name="EditedDateTime" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[Version]"
+                          dataType="i4"
+                          name="Version" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[IsDeleted]"
+                          dataType="bool"
+                          name="IsDeleted" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[PaymentMethodId]"
+                          dataType="guid"
+                          name="PaymentMethodId" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[BrandPaymentMethodId]"
+                          dataType="guid"
+                          name="BrandPaymentMethodId" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[IsAllocated]"
+                          dataType="bool"
+                          name="IsAllocated" />
+                        <externalMetadataColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input].ExternalColumns[AutomaticProcessingStatus]"
+                          dataType="i4"
+                          name="AutomaticProcessingStatus" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\VuvuzelaZA Payment\Payment.Paths[OLE DB Source Output]"
+                  endId="Package\VuvuzelaZA Payment\Payment\Payment Dest.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\VuvuzelaZA Payment\Payment\Payment.Outputs[OLE DB Source Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\VuvuzelaZA Payment\Sync Payment"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{306533F8-3723-4134-B6EB-B7097D10E378}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Sync Payment"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="EXEC [dbo].[sp_Stage_VuvuzelaZA_Payment]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+        <DTS:Executable
+          DTS:refId="Package\VuvuzelaZA Payment\Truncate dbFinanceStaging - VuvuzelaZA - Stage_Payment"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{1BE762CD-1F37-4332-AB1C-A0508CC4E39D}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Truncate dbFinanceStaging - VuvuzelaZA - Stage_Payment"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{FB9B752E-F9BD-4586-8F0E-13EEECC70DCB}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE dbFinanceStaging.[VuvuZelaZA].[Stage_Payment]" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+      <DTS:PrecedenceConstraints>
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\VuvuzelaZA Payment.PrecedenceConstraints[Constraint 6]"
+          DTS:CreationName=""
+          DTS:DTSID="{57F60706-0ADF-4219-A7EE-8692C51E5D52}"
+          DTS:From="Package\VuvuzelaZA Payment\Truncate dbFinanceStaging - VuvuzelaZA - Stage_Payment"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 6"
+          DTS:To="Package\VuvuzelaZA Payment\Payment" />
+        <DTS:PrecedenceConstraint
+          DTS:refId="Package\VuvuzelaZA Payment.PrecedenceConstraints[Constraint 7]"
+          DTS:CreationName=""
+          DTS:DTSID="{4FF76E36-AC84-4D05-8B93-EBB2B5B739F3}"
+          DTS:From="Package\VuvuzelaZA Payment\Payment"
+          DTS:LogicalAnd="True"
+          DTS:ObjectName="Constraint 7"
+          DTS:To="Package\VuvuzelaZA Payment\Sync Payment" />
+      </DTS:PrecedenceConstraints>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{1D36E312-1A95-4A56-8AF0-81E900054614}"
+      DTS:From="Package\Vuvuzela Payment"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\VuvuzelaZA Payment"
+      DTS:Value="2" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="8">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="16" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Vuvuzela Payment\Payment"
+          TopLeft="105.5,108.166666666667" />
+        <NodeLayout
+          Size="145.333333333334,42"
+          Id="Package\Vuvuzela Payment\Sync Payment"
+          TopLeft="92.8333333333334,210.166666666667" />
+        <NodeLayout
+          Size="320,42.6666666666667"
+          Id="Package\Vuvuzela Payment\Truncate dbFinanceStaging - dbo - Stage_Payment"
+          TopLeft="5.5,5.50000000000004" />
+        <EdgeLayout
+          Id="Package\Vuvuzela Payment.PrecedenceConstraints[Constraint 11]"
+          TopLeft="165.5,150.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Vuvuzela Payment.PrecedenceConstraints[Constraint 8]"
+          TopLeft="165.5,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="330.666666666667,307.333333333334"
+          Size="330.666666666667,350"
+          Id="Package\Vuvuzela Payment"
+          TopLeft="23.5,5.5" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\VuvuzelaZA Payment\Payment"
+          TopLeft="123.5,108.166666666667" />
+        <NodeLayout
+          Size="145.333333333334,42"
+          Id="Package\VuvuzelaZA Payment\Sync Payment"
+          TopLeft="110.833333333333,210.166666666667" />
+        <NodeLayout
+          Size="356,42.6666666666667"
+          Id="Package\VuvuzelaZA Payment\Truncate dbFinanceStaging - VuvuzelaZA - Stage_Payment"
+          TopLeft="5.5,5.50000000000004" />
+        <EdgeLayout
+          Id="Package\VuvuzelaZA Payment.PrecedenceConstraints[Constraint 6]"
+          TopLeft="183.5,48.1666666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\VuvuzelaZA Payment.PrecedenceConstraints[Constraint 7]"
+          TopLeft="183.5,150.166666666667">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="366.666666666667,307.333333333334"
+          Size="366.666666666667,350"
+          Id="Package\VuvuzelaZA Payment"
+          TopLeft="5.50000000000009,415.5" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="188.833333333333,355.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,60"
+              Start="0,0"
+              End="0,52.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,52.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-25.304453125,20.4453125,50.60890625,11.609375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Vuvuzela Payment\Payment">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="144,42"
+          Id="Package\Vuvuzela Payment\Payment\Payment Dest"
+          TopLeft="378,400" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\Vuvuzela Payment\Payment\Payment"
+          TopLeft="366,188" />
+        <EdgeLayout
+          Id="Package\Vuvuzela Payment\Payment.Paths[OLE DB Source Output]"
+          TopLeft="426,230">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="24,170"
+              Start="0,0"
+              End="24,162.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,81"
+                    Point2="0,85"
+                    Point3="4,85" />
+                  <mssgle:LineSegment
+                    End="20,85" />
+                  <mssgle:CubicBezierSegment
+                    Point1="20,85"
+                    Point2="24,85"
+                    Point3="24,89" />
+                  <mssgle:LineSegment
+                    End="24,162.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Vuvuzela Payment\Payment\Payment">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <TaskHost
+    design-time-name="Package\VuvuzelaZA Payment\Payment">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="4" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="145.333333333334,42.6666666666667"
+          Id="Package\VuvuzelaZA Payment\Payment\Payment Dest"
+          TopLeft="378,400" />
+        <NodeLayout
+          Size="120,42"
+          Id="Package\VuvuzelaZA Payment\Payment\Payment"
+          TopLeft="367,188" />
+        <EdgeLayout
+          Id="Package\VuvuzelaZA Payment\Payment.Paths[OLE DB Source Output]"
+          TopLeft="427,230">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="23.6666666666667,170"
+              Start="0,0"
+              End="23.6666666666667,162.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,81" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,81"
+                    Point2="0,85"
+                    Point3="4,85" />
+                  <mssgle:LineSegment
+                    End="19.6666666666667,85" />
+                  <mssgle:CubicBezierSegment
+                    Point1="19.6666666666667,85"
+                    Point2="23.6666666666667,85"
+                    Point3="23.6666666666667,89" />
+                  <mssgle:LineSegment
+                    End="23.6666666666667,162.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\VuvuzelaZA Payment\Payment\Payment">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
