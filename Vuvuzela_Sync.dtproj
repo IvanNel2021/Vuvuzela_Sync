@@ -22,11 +22,11 @@
           <SSIS:Property SSIS:Name="VersionComments">
           </SSIS:Property>
           <SSIS:Property SSIS:Name="CreationDate">2019-08-20T10:14:11.9606171+02:00</SSIS:Property>
-          <SSIS:Property SSIS:Name="CreatorName">WHLBASE\BiAdmin-JohanP</SSIS:Property>
+          <SSIS:Property SSIS:Name="CreatorName">WHLBASE\BiAdmin-Ivan.Nel</SSIS:Property>
           <SSIS:Property SSIS:Name="CreatorComputerName">WHLDOMTS01</SSIS:Property>
           <SSIS:Property SSIS:Name="Description">
           </SSIS:Property>
-          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAAeHfGsVC2E20nGQSqY0gvwAAAAACAAAAAAADZgAAwAAAABAAAAAC4S6a50UOKp3O3cgrlF57AAAAAASAAACgAAAAEAAAAEMksaovTSJ56KMs7hRvpp2IAAAAFxzQajXWmY7zdSnWMq0BJpTEQQOBQr6bAWEfO1WpWCTUZ2tgLaH30IevOGCc/d5f4/fxoUb6ZCykUw/Xu8CxIlX4D6gRj8PhNVohqk6qUoHXpk3L44gcvtvdJo9CKjF/vZHOf/8qhXVeKCVQ4xXLahOCFDWQlqGAvbLsj98vNY9lWgWllFuHPhQAAABSWxwp1H8w1dCORLjqTtr5n05Iwg==</SSIS:Property>
+          <SSIS:Property SSIS:Name="PasswordVerifier" SSIS:Sensitive="1">AQAAANCMnd8BFdERjHoAwE/Cl+sBAAAAAeHfGsVC2E20nGQSqY0gvwAAAAACAAAAAAADZgAAwAAAABAAAABvq8fSFToktiCEFhhiNQtbAAAAAASAAACgAAAAEAAAAPDUaqiFMkHtetYpbtJXcneIAAAA4oSECw/s0iH2ZiHuxPdduF4ikCJNJX1O+2KQe47Tdakk2E0XP9INrfCbR9NKMKo9AF1fwOxvlsdotByxCQ2xQxpS7VGkKIobnKJ0uiFBnci9rDkLBxsdpv4/nuNWO2vOVpdRktVb2N+ZPDd3tbOH8Ot6OnYrs1KzljMzTekLRvXKQIEnECEgCRQAAAC61e0YehgElwNLBhsPle7Luzg2SA==</SSIS:Property>
           <SSIS:Property SSIS:Name="FormatVersion">1</SSIS:Property>
         </SSIS:Properties>
         <SSIS:Packages>
